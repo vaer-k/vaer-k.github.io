@@ -1,1111 +1,417 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="https://vaer-k.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vaer-k.net/" rel="alternate" type="text/html" hreflang="en" /><updated>2018-07-10T18:29:58-07:00</updated><id>https://vaer-k.net/</id><title type="html">Vincent Raerek</title><subtitle>Hydejack is Jekyll theme with JavaScript powers. It has been called the &quot;Best [Jekyll] Theme by a Mile&quot;. Hundreds of hackers and scientists use it for their personal sites. Open `_config.yml` to edit this text.
-</subtitle><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><entry><title type="html">Example Content III</title><link href="https://vaer-k.net/blog/hydejack/2018-06-01-example-content-iii/" rel="alternate" type="text/html" title="Example Content III" /><published>2018-06-01T00:00:00-07:00</published><updated>2018-06-01T00:00:00-07:00</updated><id>https://vaer-k.net/blog/hydejack/example-content-iii</id><content type="html" xml:base="https://vaer-k.net/blog/hydejack/2018-06-01-example-content-iii/">&lt;p&gt;Hydejack offers a few additional features to markup your markdown.
-Don’t worry, these are merely CSS classes added with kramdown’s &lt;code class=&quot;highlighter-rouge&quot;&gt;{:...}&lt;/code&gt; syntax,
-so that your content remains compatible with other Jekyll themes.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="https://vaer-k.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vaer-k.net/" rel="alternate" type="text/html" hreflang="en" /><updated>2018-07-10T18:42:59-07:00</updated><id>https://vaer-k.net/</id><title type="html">Vincent Raerek</title><subtitle>Vincent Raerek on the Internet
+</subtitle><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><entry><title type="html">About manually implementing an artificial neural network in Python without using machine libraries</title><link href="https://vaer-k.net/blog/machine%20learning/2017-04-25-Implementing-a-Neural-Network/" rel="alternate" type="text/html" title="About manually implementing an artificial neural network in Python without using machine libraries" /><published>2017-04-25T00:00:00-07:00</published><updated>2017-04-25T00:00:00-07:00</updated><id>https://vaer-k.net/blog/machine%20learning/Implementing-a-Neural-Network</id><content type="html" xml:base="https://vaer-k.net/blog/machine%20learning/2017-04-25-Implementing-a-Neural-Network/">&lt;p&gt;Last year I spent my after-work hours working on a few MOOC courses. One of them was an EdX course about Apache Spark, which I took to get myself up to speed on the framework that I would end up deploying at work to track social media performance of editorial content across publishers of interest to my company. The other two were about machine learning, and I had a great time working through them, especially the first one, Stanford’s &lt;a href=&quot;https://www.coursera.org/account/accomplishments/verify/WNA7KK8RWWHD&quot;&gt;Coursera course&lt;/a&gt; by Prof. Andrew Ng. After that course, I enrolled in the &lt;a href=&quot;https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009&quot;&gt;Machine Learning Nanodree&lt;/a&gt; at Udacity to further strengthen my machine learning foundations.&lt;/p&gt;
 
-&lt;h2 id=&quot;message-boxes&quot;&gt;Message boxes&lt;/h2&gt;
-&lt;p class=&quot;message&quot;&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: You can add a message box.&lt;/p&gt;
+&lt;p&gt;The following text represents the report that I submitted as a part of my capstone project for the nanodegree. It describes the process I employed to plan and develop an artificial neural network in Python 2.7 using no machine learning libraries. I chose not to use any libraries so that I could explore the calculus of neural networks in depth, but in a production environment I would of course use an appropriate library. I had a great time putting this together, and I hope you’ll enjoy reading a bit about it. If you’d like to inspect or run the code yourself, you can find it &lt;a href=&quot;https://github.com/vaer-k/neural-net&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;large-text&quot;&gt;Large text&lt;/h2&gt;
-&lt;p class=&quot;lead&quot;&gt;You can add large text.&lt;/p&gt;
+&lt;hr /&gt;
 
-&lt;h2 id=&quot;large-images&quot;&gt;Large images&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://placehold.it/800x100&quot; alt=&quot;Full-width image&quot; class=&quot;lead&quot; width=&quot;800&quot; height=&quot;100&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;capstone-project-mnist-handwritten-digits-image-classification&quot;&gt;Capstone Project: MNIST Handwritten Digits Image Classification&lt;/h2&gt;
 
-&lt;h2 id=&quot;captions-to-images&quot;&gt;Captions to images&lt;/h2&gt;
-&lt;p class=&quot;figure&quot;&gt;&lt;img src=&quot;https://placehold.it/800x100&quot; alt=&quot;Full-width image&quot; class=&quot;lead&quot; width=&quot;800&quot; height=&quot;100&quot; /&gt;
-A caption to an image.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Vincent Raerek&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;April 22, 2017&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;large-quotes&quot;&gt;Large quotes&lt;/h2&gt;
-&lt;blockquote class=&quot;lead&quot;&gt;
-  &lt;p&gt;You can make a quote “pop out”.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;h3 id=&quot;i-definition&quot;&gt;I. Definition&lt;/h3&gt;
 
-&lt;h2 id=&quot;faded-text&quot;&gt;Faded text&lt;/h2&gt;
-&lt;p class=&quot;faded&quot;&gt;I’m faded, faded, faded.&lt;/p&gt;
+&lt;h4 id=&quot;project-overview&quot;&gt;Project Overview&lt;/h4&gt;
 
-&lt;h2 id=&quot;large-tables&quot;&gt;Large Tables&lt;/h2&gt;
+&lt;p&gt;Humans have been communicating through written word since at least as early as 3100 B.C., and written communication is inarguably one of the most essential contributions to human culture. The ability to record our thoughts by hand is so fast and natural that even today we could scarcely get by without it.&lt;/p&gt;
 
-&lt;table class=&quot;scroll-table&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Default aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Left aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Center aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;Right aligned&lt;/th&gt;
-      &lt;th&gt;Default aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Left aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Center aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;Right aligned&lt;/th&gt;
-      &lt;th&gt;Default aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Left aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Center aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;Right aligned&lt;/th&gt;
-      &lt;th&gt;Default aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Left aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Center aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;Right aligned&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;First body part&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Second cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Third cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;fourth cell&lt;/td&gt;
-      &lt;td&gt;First body part&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Second cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Third cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;fourth cell&lt;/td&gt;
-      &lt;td&gt;First body part&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Second cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Third cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;fourth cell&lt;/td&gt;
-      &lt;td&gt;First body part&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Second cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Third cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;fourth cell&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Second line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;foo&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;strong&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;baz&lt;/td&gt;
-      &lt;td&gt;Second line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;foo&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;strong&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;baz&lt;/td&gt;
-      &lt;td&gt;Second line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;foo&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;strong&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;baz&lt;/td&gt;
-      &lt;td&gt;Second line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;foo&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;strong&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;baz&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Third line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;Third line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;Third line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;Third line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Second body&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt; &lt;/td&gt;
-      &lt;td&gt;Second body&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt; &lt;/td&gt;
-      &lt;td&gt;Second body&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt; &lt;/td&gt;
-      &lt;td&gt;Second body&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2 line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt; &lt;/td&gt;
-      &lt;td&gt;2 line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt; &lt;/td&gt;
-      &lt;td&gt;2 line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt; &lt;/td&gt;
-      &lt;td&gt;2 line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Footer row&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt; &lt;/td&gt;
-      &lt;td&gt;Footer row&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt; &lt;/td&gt;
-      &lt;td&gt;Footer row&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt; &lt;/td&gt;
-      &lt;td&gt;Footer row&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;p&gt;Yet although we often take this ability for granted, it can be a difficult task in computer vision. Vision itself is often taken for granted, as we humans naturally parse and interpret our visual fields so quickly that we have no need to even think about it consciously most of the time. However this apparently simple task is surprisingly so complex that the mountain of existent scientific work has arguably just scratched the surface of vision’s mechanics in human biology and its role in the simple behaviors of our daily lives, let alone thought and consciousness. Suffice it to say that computer vision is a hard problem with great room for improvement.&lt;/p&gt;
 
-&lt;table class=&quot;flip-table&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Default aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Left aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Center aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;Right aligned&lt;/th&gt;
-      &lt;th&gt;Default aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Left aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Center aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;Right aligned&lt;/th&gt;
-      &lt;th&gt;Default aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Left aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Center aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;Right aligned&lt;/th&gt;
-      &lt;th&gt;Default aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Left aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Center aligned&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;Right aligned&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;First body part&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Second cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Third cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;fourth cell&lt;/td&gt;
-      &lt;td&gt;First body part&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Second cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Third cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;fourth cell&lt;/td&gt;
-      &lt;td&gt;First body part&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Second cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Third cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;fourth cell&lt;/td&gt;
-      &lt;td&gt;First body part&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Second cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Third cell&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;fourth cell&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Second line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;foo&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;strong&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;baz&lt;/td&gt;
-      &lt;td&gt;Second line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;foo&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;strong&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;baz&lt;/td&gt;
-      &lt;td&gt;Second line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;foo&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;strong&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;baz&lt;/td&gt;
-      &lt;td&gt;Second line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;foo&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;strong&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;baz&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Third line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;Third line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;Third line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;Third line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;4th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;4th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;4th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;4th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;5th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;5th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;5th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;5th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;6th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;6th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;6th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;6th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;7th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;7th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;7th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;7th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;8th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;8th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;8th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;8th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;9th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;9th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;9th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;9th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;10th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;10th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;10th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-      &lt;td&gt;10th line&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;quux&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;baz&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;bar&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;center&gt;&lt;img src=&quot;https://vaer-k.net/images/xkcd_comp_vision.png&quot; height=&quot;300&quot; width=&quot;350&quot; /&gt;&lt;/center&gt;
 
-&lt;h2 id=&quot;code-blocks&quot;&gt;Code blocks&lt;/h2&gt;
+&lt;p&gt;The ability to recognize and interpret written characters involves a number of processes, from breaking down the image into meaningful segments to using context, experience and knowledge to interpret each segment. One area of human life where vision is essential is in commerce, where we frequently exchange currencies and other promissory notes for goods. We need to be able to read these paper documents in order to facilitate the transactions, and in large societies there are at least many millions of transactions daily. It would be helpful if we could enlist the help of computers to make the task of processing currency exchange easier. The first step to achieving this might be to write a program that would enable a computer to recognize numerical handwritten digits, since all currencies could be expected to contain numeric information (like the value of a bank note, or the value promised by a check).&lt;/p&gt;
 
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Example can be run directly in your JavaScript console&lt;/span&gt;
+&lt;h4 id=&quot;problem-statement&quot;&gt;Problem Statement&lt;/h4&gt;
+&lt;p&gt;MNIST (“Modified National Institute of Standards and Technology”), released in 1999, is a commonly used dataset of handwritten images used as a resource for training and benchmarking computer vision classification programs.&lt;/p&gt;
 
-&lt;span class=&quot;c1&quot;&gt;// Create a function that takes two arguments and returns the sum of those&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// arguments&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;return a + b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;p&gt;In this exercise, my goal will be to correctly classify tens of thousands images of handwritten numeric digits. The data and problem objective have been provided and defined in the Kaggle competition &lt;a href=&quot;https://www.kaggle.com/c/digit-recognizer&quot;&gt;“Digit Recognizer”&lt;/a&gt;. The data exist as a series of grayscale images of handwritten digits from zero through nine. The dimensions of the images are 28x28 pixels each, for a total of 784 pixels per image. Each pixel has a value associated with it in the range of 0 to 255 inclusive, with higher values representing darker pixels.&lt;/p&gt;
 
-&lt;span class=&quot;c1&quot;&gt;// Call the function&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// &amp;gt; 8&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;I will attempt to convert each example containing 784 pixels to a single value indicating which numeric digit is represented by the image. To do this, I will implement an artificial neural network from scratch in Python 2.7, using no machine learning libraries. In order to learn the information required to achieve this, I completed Stanford professor Andrew Ng’s &lt;a href=&quot;https://www.coursera.org/learn/machine-learning&quot;&gt;Coursera course on machine learning&lt;/a&gt;, and read Michael Nielson’s &lt;a href=&quot;http://neuralnetworksanddeeplearning.com/&quot;&gt;“Neural Networks and Deep Learning”&lt;/a&gt;. This will require manually translating the calculus of the neural network algorithm, as well as evaluation and tuning algorithms, to code. Although there are plenty of excellent machine learning libraries available today that could more efficiently produce the results I present here, I have chosen to implement the algorithm myself in the interest of my personal education and enjoyment. In a production environment, I would use an appropriate library.&lt;/p&gt;
 
-&lt;h2 id=&quot;math&quot;&gt;Math&lt;/h2&gt;
-&lt;p&gt;Lorem ipsum &lt;code class=&quot;MathJax_Preview&quot;&gt;f(x) = x^2&lt;/code&gt;&lt;script type=&quot;math/tex&quot;&gt;f(x) = x^2&lt;/script&gt;.&lt;/p&gt;
+&lt;h4 id=&quot;metrics&quot;&gt;Metrics&lt;/h4&gt;
+&lt;p&gt;Since ultimately my goal is to correctly classify as many examples of handwritten digits as possible, it is natural to use measures of accuracy to quantify how well the model performs. Basic accuracy, defined by the number of correct classifications divided by the total number of classifications, will suffice as a basic metric. The accuracy metric will be provided as the percentage of correct classification out of the total classification completed.&lt;/p&gt;
 
-&lt;pre class=&quot;MathJax_Preview&quot;&gt;&lt;code&gt;\begin{aligned}
-  \phi(x,y) &amp;amp;= \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right) \\[2em]
-            &amp;amp;= \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j)            \\[2em]
-            &amp;amp;= (x_1, \ldots, x_n)
-               \left(\begin{array}{ccc}
-                 \phi(e_1, e_1)  &amp;amp; \cdots &amp;amp; \phi(e_1, e_n) \\
-                 \vdots          &amp;amp; \ddots &amp;amp; \vdots         \\
-                 \phi(e_n, e_1)  &amp;amp; \cdots &amp;amp; \phi(e_n, e_n)
-               \end{array}\right)
-               \left(\begin{array}{c}
-                 y_1    \\
-                 \vdots \\
-                 y_n
-               \end{array}\right)
-\end{aligned}&lt;/code&gt;&lt;/pre&gt;
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{aligned}
-  \phi(x,y) &amp;= \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right) \\[2em]
-            &amp;= \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j)            \\[2em]
-            &amp;= (x_1, \ldots, x_n)
-               \left(\begin{array}{ccc}
-                 \phi(e_1, e_1)  &amp; \cdots &amp; \phi(e_1, e_n) \\
-                 \vdots          &amp; \ddots &amp; \vdots         \\
-                 \phi(e_n, e_1)  &amp; \cdots &amp; \phi(e_n, e_n)
-               \end{array}\right)
-               \left(\begin{array}{c}
-                 y_1    \\
-                 \vdots \\
-                 y_n
-               \end{array}\right)
-\end{aligned} %]]&gt;&lt;/script&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">Hydejack offers a few additional features to markup your markdown. Don’t worry, these are merely CSS classes added with kramdown’s {:...} syntax, so that your content remains compatible with other Jekyll themes.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://vaer-k.net/assets/img/example-content-iii.jpg" /></entry><entry><title type="html">Example Content II</title><link href="https://vaer-k.net/blog/hydejack/2017-11-23-example-content-ii/" rel="alternate" type="text/html" title="Example Content II" /><published>2017-11-23T00:00:00-08:00</published><updated>2017-11-23T00:00:00-08:00</updated><id>https://vaer-k.net/blog/hydejack/example-content-ii</id><content type="html" xml:base="https://vaer-k.net/blog/hydejack/2017-11-23-example-content-ii/">&lt;p&gt;There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.&lt;/p&gt;
+&lt;p&gt;However, because accuracy can sometimes give a misrepresentation of performance simply by random accident, I will supplement this metric with the so-called F1 measure of the balance and valence of precision and recall.  Precision is defined as the number of true positive predictions out of the total number of positive predictions; recall is defined as the number of true positive predictions out of the total number of actual positive values in the data set. Measuring the precision of the model will allow me to gain insight into how often the model falsely positively identifies digits, and measuring the recall will provide insight into how thoroughly the model is able to identify all examples of a given digit in the dataset. Because this is not a binary classification problem, but instead a multiclassifcation problem, i.e. multiple classes exist as options for assignment, the F1 score will be derived as the mean of the F1 score achieved for each individual class. The F1 score will be represented by a fractional value between zero and one, inclusive, with higher values indicating better performance.&lt;/p&gt;
 
-&lt;p&gt;There should be whitespace between paragraphs.&lt;/p&gt;
+&lt;h3 id=&quot;ii-analysis&quot;&gt;II. Analysis&lt;/h3&gt;
 
-&lt;p&gt;Text can be &lt;strong&gt;bold&lt;/strong&gt;, &lt;em&gt;italic&lt;/em&gt;, or &lt;del&gt;strikethrough&lt;/del&gt;.&lt;/p&gt;
+&lt;h4 id=&quot;data-exploration&quot;&gt;Data Exploration&lt;/h4&gt;
+&lt;p&gt;The MNIST dataset used here contains 42,000 labelled examples of 28x28 pixel images, for a total of 784 pixels per image, with each pixel represented by an integer between 0 and 255 inclusive. Higher pixel values represent darker pixels. The labels (integers 0 through 9) identify the numerical digit represented by the image, and will be used to train the model in a supervised fashion, meaning that the model will learn the characteristics of the digit image representations based on the provided labels. This dataset is provided already processed and cleaned, so it is given that there are no missing or corrupted data, and there is no need for further transformation or segmentation.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;another-page&quot;&gt;Link to another page&lt;/a&gt;.&lt;/p&gt;
+&lt;center&gt;&lt;img src=&quot;https://vaer-k.net/images/mnist.png&quot; height=&quot;224&quot; width=&quot;224&quot; /&gt;&lt;/center&gt;
 
-&lt;h2 id=&quot;header-2&quot;&gt;Header 2&lt;/h2&gt;
-
-&lt;p&gt;This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.&lt;/p&gt;
-
-&lt;h3 id=&quot;header-3&quot;&gt;Header 3&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;This is a blockquote following a header.&lt;/p&gt;
-
-  &lt;p&gt;When something is important enough, you do it even if the odds are not in your favor.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Javascript code with syntax highlighting.&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;dateformat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i18n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'./lang/'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Ruby code with syntax highlighting&lt;/span&gt;
-&lt;span class=&quot;no&quot;&gt;GitHubPages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Dependencies&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;gems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add_dependency&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;= &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;header-4&quot;&gt;Header 4&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;This is an unordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an unordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an unordered list following a header.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5 id=&quot;header-5&quot;&gt;Header 5&lt;/h5&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;This is an ordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an ordered list following a header.&lt;/li&gt;
-  &lt;li&gt;This is an ordered list following a header.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h6 id=&quot;header-6&quot;&gt;Header 6&lt;/h6&gt;
+&lt;p&gt;There are two statistical concerns I’d like to address regarding the composition of this dataset. First, while some pixels are exhibit significant variance across examples, others exhibit no variation at all:&lt;/p&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
     &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;head1&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;head two&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;three&lt;/th&gt;
+      &lt;th&gt;Statistic&lt;/th&gt;
+      &lt;th&gt;Pixel 781&lt;/th&gt;
+      &lt;th&gt;Pixel 782&lt;/th&gt;
+      &lt;th&gt;Pixel 783&lt;/th&gt;
     &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ok&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good swedish fish&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;nice&lt;/td&gt;
+      &lt;td&gt;count&lt;/td&gt;
+      &lt;td&gt;42000&lt;/td&gt;
+      &lt;td&gt;42000&lt;/td&gt;
+      &lt;td&gt;42000&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;out of stock&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good and plenty&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;nice&lt;/td&gt;
+      &lt;td&gt;mean&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ok&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good &lt;code class=&quot;highlighter-rouge&quot;&gt;oreos&lt;/code&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;hmm&lt;/td&gt;
+      &lt;td&gt;std&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ok&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;good &lt;code class=&quot;highlighter-rouge&quot;&gt;zoute&lt;/code&gt; drop&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;yumm&lt;/td&gt;
+      &lt;td&gt;min&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;max&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h3 id=&quot;theres-a-horizontal-rule-below-this&quot;&gt;There’s a horizontal rule below this.&lt;/h3&gt;
+&lt;p&gt;These pixels are just white background in all images. The question might arise, “Can these features be removed from the set?”; but the answer is that they cannot, because although their value may not vary in this training set, it’s possible that this space may be occupied by test examples, and the network may learn a pattern for the each digit class that can be translated up or down or side-to-side in the image space. Therefore, we will let them remain.
+The second statistical characteristic of the set is more significant, so we will explore it further with a visualization.&lt;/p&gt;
+
+&lt;h4 id=&quot;exploratory-visualization&quot;&gt;Exploratory Visualization&lt;/h4&gt;
+&lt;p&gt;In classification problems it’s important to determine whether or not the training set is balanced. There should be a relatively even number proportion of examples of each class. Unbalanced datasets can lead to surprisingly high accuracy measurements even when using an obviously flawed model.&lt;/p&gt;
+
+&lt;p&gt;For example, suppose there is a training dataset containing labelled examples of medical patient data. The labels on this data indicate whether or not a patient is infected with disease Z. If 80% of the patients in the dataset are labelled as positively having disease Z, we could easily achieve a model with 80% accuracy simply by always predicting positive! We will investigate the current dataset for balance:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://vaer-k.net/images/nn_balance.png&quot; alt=&quot;Balance visualization&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The histogram above describes the frequency of examples for each class in the dataset. We can clearly see that the number of examples is relatively even, hovering around 4000 examples per class. Therefore we can disregard concerns of imbalanced representation of accuracy measures. Furthermore, employing the F1 score as a metric also helps to reveal unhelpful patterns due to imbalance, because a model that achieves high accuracy simple by chance will usually also have a poor F1 score, because it will fail to achieve either high recall or precision due to its bias.&lt;/p&gt;
+
+&lt;h4 id=&quot;algorithms-and-techniques&quot;&gt;Algorithms and Techniques&lt;/h4&gt;
+&lt;p&gt;I implement a basic artificial neural network trained with stochastic gradient descent for this challenge, with several options for tuning and configuration. A neural network is adept at solving non-linear functions for a variety of tasks, and computer vision is a common use case.  Neural networks are especially useful when there are a large number of input features, which is the case for this problem.&lt;/p&gt;
+
+&lt;p&gt;Neural networks have a wide variety of use cases, but in general their functionality serves to first transform input feature vectors into latent properties in the hidden layers, then to output class or regression predictions. At a high-level, neural networks make this transformation by passing input values through a series of combinations of linear transformations and nonlinear so-called “activation” functions. Input values are multiplied and summed to form middle layers, also called “hidden” layers, then transformed by a nonlinear (or linear) function. This process is repeated multiple times, with deeper networks having more layers, capable of more nonlinear representations, but more susceptible to overfitting to the training set.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;https://vaer-k.net/images/ann.png&quot; height=&quot;275&quot; width=&quot;300&quot; /&gt;&lt;/center&gt;
+
+&lt;p&gt;In a classification setting, minimizing the network cost function serves to draw highly non-linear boundaries around each class, thus providing a nuanced and sophisticated mathematical representation of complex concepts, including tasks from facial recognition to stock market predictions.&lt;/p&gt;
+
+&lt;p&gt;I provide several options for many default variables and parameters. The regularization parameter, lambda, is tuned via k-fold cross validation, where the best performing regularization value on a validation set is selected and used for testing and prediction. The learning rate parameter, alpha, is set by default to start at 0.05, and decays over time to allow for smaller and smaller steps toward the gradient as the model matures. The number of epochs, or steps of gradient descent, is variable and set to default to 30 steps.&lt;/p&gt;
+
+&lt;p&gt;The activation function has two options: logistic and tanh. The logistic function can saturate quickly, and sometimes doesn’t perform as well as tanh, which better centers the inputs. I also provide two options for the cost function: mean squared error (mse) and cross-entropy. The mean squared error is simply the mean of the squared errors from the true values, and although it is an adequate cost function it can cause the model to learn more slowly, whereas cross-entropy helps to reduce learning saturation by ensuring greater cost when the error is large.&lt;/p&gt;
+
+&lt;p&gt;I also provide a configurable parameter for the batch size of gradient descent. I use a variation of stochastic gradient descent sometimes known as batch gradient descent. I randomly select a batch of example to use for a step of gradient descent, and the size of this batch has a large impact on the speed of convergence.&lt;/p&gt;
+
+&lt;p&gt;Finally, I allow an option for random weight initialization before the model is trained. Weights can either be pulled randomly from a standard normal gaussian distribution, or they can randomly initialized from a much narrower distribution, which reduces some of the learning slowdown that can occur with very large or very small initial weights.&lt;/p&gt;
+
+&lt;h4 id=&quot;benchmark&quot;&gt;Benchmark&lt;/h4&gt;
+&lt;p&gt;The worst model possible would predict classes merely by guessing randomly, and since there are 10 classes, this model would on average achieve 10% accuracy, since for any guess there would be a 1 in 10 chance of guessing correctly. The benchmark could be set as low as this, because anything better suggests an augmentation of our ability to predict the class from noisy data.&lt;/p&gt;
+
+&lt;p&gt;However, I’ve introduced this challenge in the context of banking, where transactions must be handled with extreme reliability. Therefore I will set 90% accuracy as the benchmark for success. In this case, the model can be considered to almost always predict the correct class, which is much suitable for this hypothetical application.&lt;/p&gt;
+
+&lt;h3 id=&quot;iii-methodology&quot;&gt;III. Methodology&lt;/h3&gt;
+
+&lt;h4 id=&quot;data-preprocessing&quot;&gt;Data Preprocessing&lt;/h4&gt;
+&lt;p&gt;Because I am using a professionally catalogued dataset, provided preprocessed and pre-cleaned, there is no preprocessing necessary for this project. All images can be assumed to be clean and uncorrupted.&lt;/p&gt;
+
+&lt;h4 id=&quot;implementation&quot;&gt;Implementation&lt;/h4&gt;
+&lt;p&gt;I wanted to make an artificial neural network implementation that would be flexible enough to be applied to other datasets apart from just the MNIST image set. I started by building a neural network class that is capable of accepting a number of parameters, including layer quantity and sizes, activation functions, weight initialization, cost function, learning rate, regularization ratio, batch size of gradient descent, and number of epochs. In a separate file, I created a class for each of the types of functions that could be supplied, one each for activation, cost, evaluation and weight initialization.&lt;/p&gt;
+
+&lt;p&gt;I tried to implement the neural network class so that it could be used similarly to the patterns in scikit learn, so the class provides methods for fitting and predicting. It also allows its parameters to be adjusted even after initialization.&lt;/p&gt;
+
+&lt;p&gt;I’ll begin by describing an overview of the whole process, then I will describe the implementation of the neural network and gradient descent more in depth.&lt;/p&gt;
+
+&lt;p&gt;Custom data can be passed into the fit method, but if none is provided it will default to the MNIST training set. The fit method takes a keyword argument called “tuning”, and this is a tuple containing the hyperparameter to tune and a function for adjusting the parameter as training progresses. When the fit method is called, the network layers will be initialized according to the layers parameter, and stochastic gradient descent will begin.&lt;/p&gt;
+
+&lt;p&gt;When gradient descent begins, a test set representing ten percent of the total data is extracted from the training data. Then k-fold cross validation is performed over the training set; during this time gradient descent is performed and model is trained for each fold. Each fold is a randomly selected subset of the training set, representing ten percent of the total training set size after the test set was extracted.&lt;/p&gt;
+
+&lt;p&gt;After all of the training has completed, the fold with the best F1 score is then selected and predictions on the test set are performed and evaluated using that fold’s value of the parameter being tuned. The accuracy and F1 score of these predictions are reported in the console and pickled along with the parameters required to reproduce these scores.&lt;/p&gt;
+
+&lt;p&gt;Now that an overview of the entire training process has been described, I will explain some of the details of the implementation of the neural network and gradient descent.&lt;/p&gt;
+
+&lt;p&gt;For each fold in the k-fold cross validation process, the following is performed. First, the weights of the model and the learning rate alpha are re-initialized to clear any prior learning from other folds. Next, some file management is performed to make room for a log of the training results during gradient descent. Next, we enter a routine that is performed for each epoch in each fold. This routing breaks up the training data further into batches. Finally, forward- and back-propagation are performed on each of these batches, and the model’s weights are updated with each batch. Additionally, the learning rate alpha is reduced with each step of gradient descent, so that the model’s weights are initially updated in large steps, but then in smaller and smaller steps as the cost function generated by the weights approaches its relative minimum value. After this, the models weights are used to make predictions on both the training set and the cross validation set, and these results are recorded in csv format.&lt;/p&gt;
+
+&lt;p&gt;Let’s dive a little deeper into the feedforward propagation implementation, where a single training example is passed through the network layers and weights. The first layer of the neural network using the MNIST data will always be a 784-length vector representing the darkness of each pixel, using a value from 0 to 255, inclusive. The dot product of these values and the initial weights will result in the next layers inputs, which then pass through in activation function, and which are in turn passed through more weights and layers and activations and so on, until we reach the output layer, which ends in a final series of activation computations. The weighted sums and activation values of each layer are recorded in lists and passed back out of the feedforward function.&lt;/p&gt;
+
+&lt;p&gt;The backpropagation function takes the output from the feedforward function, namely the weighted sums and activations of each layer, and implements a derivation of the gradient of the entire network function via the chain rule, which causes the error to pass back out of the output, through activation functions, back across weights, back all the way to the first hidden layer. The error values, or deltas, are recorded in another set of lists, one for each layer (except the input layer).&lt;/p&gt;
+
+&lt;p&gt;The model weights are then updated with using the delta values, which causes the model to traverse down the derivative of the cost function toward its minimum. The weights are then adjusted one more time in proportion with the regularization parameter, which prevents these weights from growing unnecessarily large. Weights that grow too quickly tend to be undesirable because they can cause the model to overfit and thus generalize poorly.&lt;/p&gt;
+
+&lt;p&gt;Next, I will describe the implementation of the support functions for the neural network provided in the file called “neural_funcs.py”. There are several classes of such function in this file, including activation, evaluation, weight initialization and cost. There are two options in each class. In activation, I have implemented the logistic and tanh functions, along with their derivatives. In evaluation, I have implemented functions for computing accuracy and F1 scores. The accuracy is relatively straightforward; it’s just the number of correct predictions and out the total number of predictions. The F1 function however, computes the F1 for each class, and then returns the mean.&lt;/p&gt;
+
+&lt;p&gt;The weight initialization class allows us to draw random values either from a standard normal distribution, or from a normal distribution shrunk to plus or minus some small number epsilon. Finally, the cost class allows us to use either mean squared error or cross-entropy to calculate the error from true value labels.&lt;/p&gt;
+
+&lt;p&gt;The greatest complications I encountered during my implementation of forward- and back-propagation and gradient descent all revolved around my inexperience with numpy and pandas. I had some difficulty with managing the data types and structure of my data while it was passed through the network. Through a good measure of trial and error, along with some long bouts of debugging, I eventually untangled these issues however. I found that the implementations of the math formulas were relatively straightforward and easy to manage.
+One other complication I encountered was just the decisions I faced while designing the main neural network class. I wasn’t sure how flexible I wanted it to be; should it just be for learning the MNIST set, or would I prefer it to be able to be applied to other data as well? In the end I chose to make it flexible enough to be used more generally, but I think my indecision on this matter led to some messier code than I would usually write.&lt;/p&gt;
+
+&lt;h4 id=&quot;refinement&quot;&gt;Refinement&lt;/h4&gt;
+&lt;p&gt;The first time I ran my network, I ran it without regularization. I gave it one hidden layer with 5 units, and I set the learning parameter alpha to 0.5. At the time, I had not yet implemented the F1 metric, but the accuracy result was 11.2%, meaning that the model performed about as well as random chance.&lt;/p&gt;
+
+&lt;p&gt;I wasn’t sure if my network was incorrectly implemented or if the input parameters weren’t suitable, so for my next step I proceeded through trial and error to test various input parameters to see if I could significantly improve this initial result. I decided that if modifying the parameters led to a large improvement, then I would know that the network is correctly implemented and that I could move on past implementation to tuning the model. I soon discovered that my learning rate alpha was too large initially, and that by reducing it tenfold I could achieve vastly improved results: 82.6% accuracy and 0.821 F1.&lt;/p&gt;
+
+&lt;p&gt;At this point I felt confident in my network implementation, and proceeded to implement regularization and to perform k-fold cross validation to discover the best input parameters. After implementing regularization, I found to my surprise that the resulting model did not achieve better accuracy; instead it resulted in accuracy of 83% and an F1 of 0.827. However, it converged to this score faster, requiring only 25 epochs, where the previous model required 30 or more.&lt;/p&gt;
+
+&lt;p&gt;Finally, I tried adjusting the network layer sizes. Leaving the output layer at the required 10 units, I adjusted the hidden layer sizes, reasoning that a larger network would be able to capture a more complicated non-linear pattern. I used hidden layer sizes of 256 and 64 units. Alpha was set to begin at 0.05, and the best regularization value was nearly zero, at 0.00005. The activation function for these results was logistic and the cost function was mean squared error. This resulted in the highest score I have been able to achieve with this network: 93.3% accuracy and 0.932 F1.&lt;/p&gt;
+
+&lt;h3 id=&quot;iv-results&quot;&gt;IV. Results&lt;/h3&gt;
+
+&lt;h4 id=&quot;model-evaluation-and-validation&quot;&gt;Model Evaluation and Validation&lt;/h4&gt;
+&lt;p&gt;The final model achieved over 93% accuracy, beating the benchmark goal by 3%. This model was derived through a combination of trial-and-error, k-fold cross validation, and theoretical modeling. Trial and error produced a starting value for the learning rate alpha, which was initially set far too high, causing the gradient descent process to skip around the “bowl” of the cost function. By hand-tuning the parameter to an acceptable starting value, then implementing decay of the rate over time as gradient descent progressed, the model was able to closely approximate the lowest value of error on the test set.&lt;/p&gt;
+
+&lt;p&gt;The regularization parameter was tuned with k-fold cross validation; each cross-validation set was used to measure the generalizability of the learned model to unseen data using the current fold’s regularization parameter value. The fold that achieved the highest F1 score on the cross validation set was used as a model to be evaluated against the test set. This allows a reasonable level of confidence in the value used since it has been empirically proven to yield the best results in this context and with this data.&lt;/p&gt;
+
+&lt;p&gt;The data is always shuffled prior to splitting into test and cross-validation folds. Therefore we can be confident that variations in the input data to not disrupt the results of the model. Furthermore, because parameters are tuned to unseen data in the cross-validation folds, and the final model is evaluated against the unseen data in the test set, we can be confident that the model can generalize well, since the F1 and accuracy on the test set is still better than the benchmark.&lt;/p&gt;
+
+&lt;p&gt;Finally, the number of layers and the sizes thereof were the result of a decision informed by theory, which states that deeper and larger neural networks are capable of describing more and more nonlinear functions, thereby reducing bias that could undermine higher accuracy. I chose to increase the number of layers and the sizes thereof based on this information. I would like to try k-fold cross validation on this parameter as well, to more empirically investigate the best combinations available, but because the results of the current model already exceed the benchmark goal, I decided to leave the final model be.&lt;/p&gt;
+
+&lt;h4 id=&quot;justification&quot;&gt;Justification&lt;/h4&gt;
+&lt;p&gt;The benchmark goal for this model was elected to be 90% accuracy. The final model exceeds this goal by 3%. The F1 score accompanying this result is also high, rising up to over 0.932, where the highest possible score is one. This leads me to believe that not only is the model almost always predicting the correct class, but it is doing so with high precision and recall. Furthermore, the model was able to achieve results like these in most folds of cross-validation, in addition of course to the test set, suggesting that the model is highly reproducible. Therefore, the final model exhibits a high degree of reliability and accuracy.&lt;/p&gt;
+&lt;h3 id=&quot;v-conclusion&quot;&gt;V. Conclusion&lt;/h3&gt;
+
+&lt;h4 id=&quot;learning-confirmation&quot;&gt;Learning Confirmation&lt;/h4&gt;
+&lt;p&gt;Because the neural network was manually implemented from scratch, I felt it was important to verify that the network solved the gradient descent correctly, so below we plot the cost of the neural network as it learns over time through each epoch.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://vaer-k.net/images/ann_cost.png&quot; alt=&quot;ANN cost&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The results are clear, and the network is indeed learning over time. We can see that after around 60 epochs training the network does not progress much further down the gradient. This proves that the network is modifying the weights of each layer to minimize the cost function, and this is the main objective of gradient descent. It’s also interesting to see that the cost falls sharply at the beginning, the oscillates lower and lower until it plateaus around epoch sixty. This observation can be explained by noticing that the learning rate alpha is largest at the beginning of gradient descent, causing the weights to undergo large changes, but alpha decays over time, shrinking smaller and smaller, and thus causing the network to learning more and more slowly.
+Reflection
+Computer vision is indeed a difficult task, even one as tightly constrained and simplified as this one. My end-to-end solution uses a simple artificial neural network to transform a large dataset containing a series of images of various handwritten digits into numerical values that the images are supposed to represent. It does so with a high degree of reliability and accuracy with very little training.&lt;/p&gt;
+
+&lt;p&gt;Using a neural network to solve the problem proved successful, but much more susceptible than I expected to large changes in the final model as a result of fine changes to the inputs. The network is incredibly adept at describing a nonlinear solution to separating examples in an extremely high dimensional space, a process which is incredibly mathematically complex.&lt;/p&gt;
+
+&lt;p&gt;The biggest surprise I encountered was the magnitude of the effect of small changes to initialization parameters. The most difficult challenge I experienced was the initial tuning of the learning rate. I wasn’t sure what value would be suitable to start with, and small changes, perhaps a tenfold increase or decrease, had a large impact on the final results.&lt;/p&gt;
+
+&lt;p&gt;The final model does indeed fit my expectations to the problem, where I assumed I would be able to beat a 90% benchmark threshold, but I am sure that this network could be tuned further to improve its accuracy. Given the context within which this problem has been introduced, namely banking, I would not use the model I have created here, as banking necessitates a nearly perfect level of reliability, and 93% accuracy, although impressive enough to exceed my learning objectives here, is not high enough to be relied upon for critical financial transactions.&lt;/p&gt;
+
+&lt;h4 id=&quot;improvement&quot;&gt;Improvement&lt;/h4&gt;
+&lt;p&gt;There are many improvements that could be made to this implementation. First, cross-validation was only used to tune the regularization parameter, when in fact it could be used to discover the best values for each of the parameters in combination. Furthermore, cross-validation could also be used to investigate the best performing network layer sizes.&lt;/p&gt;
+
+&lt;p&gt;I have also read the Rectified Linear Units (ReLU) tend to provide better results for activation over logistic and tanh. ReLU activation are able to avoid much of the unit saturation that can plague networks based on logistic or even tanh. It’s possible that the final result presented here suffered from this problem, and ReLU could proved to be a better solution.&lt;/p&gt;
+
+&lt;p&gt;Because this problem was pulled from a well-defined and explored Kaggle competition, it is already known that better solutions exist. I think that the current final results would prove to be a very useful benchmark for building a better network.&lt;/p&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">About manually implementing an artificial neural network in Python without using machine libraries</summary></entry><entry><title type="html">Installing Spark on MacOS Sierra</title><link href="https://vaer-k.net/blog/programming/2016-11-30-Spark-Local/" rel="alternate" type="text/html" title="Installing Spark on MacOS Sierra" /><published>2016-11-30T00:00:00-08:00</published><updated>2016-11-30T00:00:00-08:00</updated><id>https://vaer-k.net/blog/programming/Spark-Local</id><content type="html" xml:base="https://vaer-k.net/blog/programming/2016-11-30-Spark-Local/">&lt;h4 id=&quot;install-dependencies&quot;&gt;Install Dependencies&lt;/h4&gt;
+
+&lt;p&gt;You need to already have installed Java and Homebrew for this tutorial.&lt;/p&gt;
+
+&lt;h4 id=&quot;install-scala&quot;&gt;Install Scala&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew install scala
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;install-apache-spark&quot;&gt;Install Apache Spark&lt;/h4&gt;
+
+&lt;p&gt;Download Spark from &lt;a href=&quot;https://spark.apache.org/downloads.html&quot;&gt;apache.org&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tar -xzvf ~/Downloads/spark-2.0.2-bin-hadoop2.7.tgz -C /usr/local/bin
+mv /usr/local/bin/spark-2.0.2-bin-hadoop2.7.tgz /usr/local/bin/spark
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;set-some-environmental-variables-in-your-shell-rc&quot;&gt;Set some environmental variables in your shell rc&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;export SCALA_HOME=&quot;/usr/local/bin/scala&quot;
+export SPARK_HOME=&quot;/usr/local/bin/spark&quot;
+export PATH=&quot;$PATH:$SCALA_HOME/bin&quot;
+export PYTHONPATH=&quot;$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.3-src.zip:$PYTHONPATH&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;create-an-alias-for-pyspark-in-your-shell-rc&quot;&gt;Create an alias for pyspark in your shell rc&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;alias pyspark=&quot;/usr/local/bin/spark/bin/pyspark&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;configure-a-local-cluster&quot;&gt;Configure a local cluster&lt;/h4&gt;
+
+&lt;p&gt;I used the instructions found on &lt;a href=&quot;http://pulasthisupun.blogspot.com/2013/11/how-to-set-up-apache-spark-cluster-in.html&quot;&gt;Pulasthi Wickramasinghe’s blog&lt;/a&gt; to guide my configuration. Specifically, I used these instructions to edit &lt;code class=&quot;highlighter-rouge&quot;&gt;conf/spark-env.sh&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;$SPARK_HOME&lt;/code&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;There are a set of variables that you can set to override the default values. this can be done by putting in values in the “spark-env.sh” file. There is a template available “conf/spark-env.sh.template” you can use this template to create the spark-env.sh file. Several variable that can be added is mentioned in the template is self. we will add the following lines to the file.&lt;/p&gt;
+
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;export SCALA_HOME=/home/pulasthi/work/spark/scala-2.9.3
+export SPARK_WORKER_MEMORY=2g
+export SPARK_EXECUTOR_INSTANCES=2
+export SPARK_WORKER_DIR=/home/pulasthi/work/sparkdata
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+
+  &lt;p&gt;Here SPARK_WORKER_MEMORY specifies the amount of memory you want to allocate for a worker node if this value is not given the default value is the total memory available - 1G. Since we are running everything in our local machine we woundt want the slave the use up all our memory. I am running on a machine with 8GB of ram and since we are creating 2 slave node we will give each of the 2GB of ram.&lt;/p&gt;
+
+  &lt;p&gt;The SPARK_EXECUTOR_INSTANCES specified the number of instances here its given as 2 since we will only create 2 slave nodes.&lt;/p&gt;
+
+  &lt;p&gt;The SPARK_WORKER_DIR will be the location that the run applications will run and which will include both logs and scratch space. Make sure that the directory can be written to by the application that is permission are set properly.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Of course, &lt;code class=&quot;highlighter-rouge&quot;&gt;SCALA_HOME&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;SPARK_WORKER_DIR&lt;/code&gt; should be set to the actual locations on your local machine. After this configuration is specified, we can start the cluster up.&lt;/p&gt;
+
+&lt;h4 id=&quot;launch-the-cluster&quot;&gt;Launch the cluster&lt;/h4&gt;
+
+&lt;p&gt;Launching doesn’t get any easier.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/usr/local/bin/spark/sbin/start-master.sh
+/usr/local/bin/spark/sbin/start-slaves.sh localhost
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then, read the log output at the location specified by the &lt;code class=&quot;highlighter-rouge&quot;&gt;start-master&lt;/code&gt; script, and it will notfiy you of the address and port location of your master node. In our case, &lt;code class=&quot;highlighter-rouge&quot;&gt;localhost:8080&lt;/code&gt; should take us to a Zeppelin UI attached to the cluster, and &lt;code class=&quot;highlighter-rouge&quot;&gt;localhost:8081&lt;/code&gt; should take us to the Spark web UI, where we can see that the master is running and attached to two slaves.&lt;/p&gt;
+
+&lt;h4 id=&quot;configure-pycharm-optional&quot;&gt;Configure PyCharm (optional)&lt;/h4&gt;
+
+&lt;p&gt;If you’re using PyCharm to code, you might want to benefit from linting that recognizes the spark software, so here’s how to configure the PyCharm interpreter:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Open PyCharm preferences&lt;/li&gt;
+  &lt;li&gt;Navigate to Project Interpreter menu (just search for it)&lt;/li&gt;
+  &lt;li&gt;Click on the arrow to expand the pulldown on the &lt;em&gt;Project Interpreter&lt;/em&gt; field&lt;/li&gt;
+  &lt;li&gt;Select &lt;em&gt;show all&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;Highlight your project python interpreter by clicking on it&lt;/li&gt;
+  &lt;li&gt;Click the &lt;em&gt;interpreter paths&lt;/em&gt; icon&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Finally, add the following paths to your interpreter paths:&lt;/p&gt;
+
+    &lt;p&gt;/usr/local/bin/spark/python&lt;br /&gt;
+  /usr/local/bin/spark/python/lib/py4j-0.10.3-src.zip&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;enjoy&quot;&gt;Enjoy&lt;/h4&gt;
+
+&lt;p&gt;You are now able to import pyspark in your python files. You can also run spark interactively by typing &lt;code class=&quot;highlighter-rouge&quot;&gt;pyspark&lt;/code&gt; in the terminal.&lt;/p&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">How to install Apache Spark on MacOS Sierra</summary></entry><entry><title type="html">Configuring SSH Tunnel to EMR Master Node for Zeppelin in Chrome</title><link href="https://vaer-k.net/blog/programming/2016-11-29-Emr-Ssh/" rel="alternate" type="text/html" title="Configuring SSH Tunnel to EMR Master Node for Zeppelin in Chrome" /><published>2016-11-29T00:00:00-08:00</published><updated>2016-11-29T00:00:00-08:00</updated><id>https://vaer-k.net/blog/programming/Emr-Ssh</id><content type="html" xml:base="https://vaer-k.net/blog/programming/2016-11-29-Emr-Ssh/">&lt;p&gt;I recently needed to set up an SSH tunnel through a proxy to run Apache Zeppelin in my local browser so that I could access my Apache Spark cluster on Amazon EMR. Amazon’s documentation on getting this running on Chrome is slightly out of date so I thought I would share the setup instructions here for posterity and my future self.&lt;/p&gt;
+
+&lt;h4 id=&quot;set-up-ssh-tunnel&quot;&gt;Set up SSH Tunnel&lt;/h4&gt;
+
+&lt;p&gt;First, add a host profile to your ssh config, which will by default be located at &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.ssh/config&lt;/code&gt;. Mine looks like this, and it defines the path to my proxy server and my final destination server at AWS:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Host &amp;lt;tunnel name&amp;gt;
+    ProxyCommand ssh &amp;lt;proxy server address&amp;gt; exec nc %h %p
+    Hostname &amp;lt;AWS address&amp;gt;
+    IdentifyFile &amp;lt;path to pem file&amp;gt;
+    User &amp;lt;user name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The text enclosed in &amp;lt;&amp;gt; brackets would of course need to be replaced with your own addresses/names. This configuration will allow you to simply type &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh -ND 8157 &amp;lt;tunnel-name&amp;gt;&lt;/code&gt; to open your tunnel connection to AWS. The &lt;code class=&quot;highlighter-rouge&quot;&gt;IdentifyFile&lt;/code&gt; configuration should point to the path of the AWS PEM key provided to you by AWS when you created your cluster. You can shorten this command further by adding the following to your shell rc:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;alias &amp;lt;alias name&amp;gt;=&quot;ssh -ND 8157 &amp;lt;tunnel-name&amp;gt;&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;configure-proxy-extension&quot;&gt;Configure proxy extension&lt;/h4&gt;
+
+&lt;p&gt;Now, that’s the easy part. Well, it’s all pretty easy, but what threw me was the configuration necessary for the proxy connection via my browser. The &lt;a href=&quot;http://docs.aws.amazon.com//ElasticMapReduce/latest/ManagementGuide/emr-connect-master-node-proxy.html&quot;&gt;Amazon Documentation&lt;/a&gt; describes using a Chrome extension called FoxyProxy, but it appears this extension is no longer available (at least not for free). There is an alternative extension called &lt;a href=&quot;https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif&quot;&gt;SwitchyOmega&lt;/a&gt;, but the configuration required is not described in the Amazon docs. Configuring this proxy will allow your browser to automatically filter URLs based on text patterns and to limit the proxy settings to domains that match the form of your master node’s public DNS name.&lt;/p&gt;
+
+&lt;p&gt;So, here’s how to configure it. Install the extension and open its options menu. Delete the default profiles and click to create a new profile. Choose to create a PAC profile. Copy and paste the following code snippet into the PAC Script field. These functions will send only AWS urls matching the regex through the proxy.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function regExpMatch(url, pattern) {
+  try { return new RegExp(pattern).test(url); } catch(ex) { return false; }
+}
+
+function FindProxyForURL(url, host) {
+    if (shExpMatch(url, &quot;*ec2*.amazonaws.com*&quot;)) return 'SOCKS5 localhost:8157';
+    if (shExpMatch(url, &quot;*.compute.internal*&quot;) || shExpMatch(url, &quot;*://compute.internal*&quot;)) return 'SOCKS5 localhost:8157';
+    if (shExpMatch(url, &quot;*ec2.internal*&quot;)) return 'SOCKS5 localhost:8157';
+    return 'DIRECT';
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Save the profile. Finally, you can just fire up the tunnel using your alias, ensure that the new proxy profile is active in the SwitchyOmega extension, and navigate to your AWS master public DNS name, specifying the port 8890 (default for Zeppelin servers). Master DNS names should have the following format: &lt;code class=&quot;highlighter-rouge&quot;&gt;c2-###-##-##-###.compute-1.amazonaws.com&lt;/code&gt;, and you would specify the port by appending &lt;code class=&quot;highlighter-rouge&quot;&gt;:8890&lt;/code&gt;.&lt;/p&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">Configuring SSH Tunnel to EMR Master Node Using Dynamic Port Forwarding, Zeppelin and Chrome</summary></entry><entry><title type="html">About my departure from Johns Hopkins, my introduction to CompSci, and moving back to California</title><link href="https://vaer-k.net/blog/personal/2015-08-11-Refactoring-my-future/" rel="alternate" type="text/html" title="About my departure from Johns Hopkins, my introduction to CompSci, and moving back to California" /><published>2015-08-11T00:00:00-07:00</published><updated>2015-08-11T00:00:00-07:00</updated><id>https://vaer-k.net/blog/personal/Refactoring-my-future</id><content type="html" xml:base="https://vaer-k.net/blog/personal/2015-08-11-Refactoring-my-future/">&lt;p&gt;I recently decided to leave a graduate program at Johns Hopkins University to pursue my interests in industry. This was not a decision I took lightly. My biggest reason for heading down this new road involved a growing skepticism about how well the training I was receiving would prepare me for the kinds of jobs I’d eventually like to pursue, but several important factors influenced my reasoning about this very big change.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://vaer-k.net/images/road.jpg&quot; alt=&quot;A fork in the road&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;finding-my-academic-identity&quot;&gt;Finding my academic identity&lt;/h4&gt;
+
+&lt;p&gt;My driving passion is my interest in the mechanics of attention, learning and decision making in both biological and artificial systems. While it might seem obvious to reason that our understanding of the human brain might do much to inform our progress toward an artificial general intelligence, in grad school I encountered many people who scoffed at the idea that neuroscience might have any more wisdom left to impart to computer scientists. And it’s true – I’ve come to understand that brains and machines are more different from each other than I had imagined. But that doesn’t mean we should stop looking to the brain for inspiration for A.I., or vice versa.&lt;/p&gt;
+
+&lt;p&gt;I want to be a part of the realization of the first artificial general intelligence, even if only in some small way, some lesser-known paper published in some open-access journal maybe. But I think I can do at least that and more. I think I’m finally qualified to begin developing quantitative models of networks of attention and decision making, and I’d like to apply what I learn to practical commercial or industrial products.&lt;/p&gt;
+
+&lt;p&gt;Toward the end of my first year at Hopkins, it began to become clear to me that the aim of my career trajectory was a bit off target. I ended up taking a course called &lt;em&gt;Quantitative Methods for Scientific Data Analysis&lt;/em&gt;, taught by my academic advisor, and it woke a nascent but powerful fascination for the marriage of statistical learning and computer programming. I found it immensely satisfying to use computers to simulate and inspect data, vast amounts of data too, and I didn’t even have to go through the usual scientific drudgery of collecting it through long experiments! Even better, I loved being able to test theories immediately and iteratively, without any need to wait for data collection or red tape.&lt;/p&gt;
+
+&lt;p&gt;At the same time, I was learning about scientists like &lt;a href=&quot;https://en.m.wikipedia.org/wiki/David_Marr_(neuroscientist)&quot;&gt;David Marr&lt;/a&gt;, a psychologist/neuroscientist whose lasting impact on artificial intelligence is still felt today; I was reading papers published in computer science journals about all kinds of exciting advances in the field, including everything from new models of vision/language recognition to renewed popular excitement in models of statistical learning like neural networks; I was learning that I too wanted to pursue these kinds of big ideas at the intersection of computer science, philosophy, math and psychology.&lt;/p&gt;
+
+&lt;p&gt;In my grad program at Hopkins, I was certainly picking up some incredible skills, but I became skeptical about whether or not they were specific enough to my interests. It seemed like I was spending too much time doing things like surgery and experiments on animals, which I loathed, and I saw a widening gulf between what I was specializing in and what I wanted to specialize in. I knew that if I didn’t correct my course now, at the near-beginning of my journey, then I would regret it later on.&lt;/p&gt;
+
+&lt;h4 id=&quot;lifes-curveballs&quot;&gt;Life’s curveballs&lt;/h4&gt;
+
+&lt;p&gt;But something else happened in my life toward the end of my first year of grad study: I got engaged! Exciting as this personal development was, it presented another problem for my career. My beautiful fiancee has worked very hard to build her career in California, but since I expected to be stuck in Baltimore for five more years, our engagement meant that she would have to drop her achievements and rebuild anew on the east coast with me. At first, that was just what we planned to do, but slowly dawned on me that this plan really didn’t make sense. Why should the partner who is more established and invested in her career drop everything for the partner who is just beginning?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://vaer-k.net/images/california.jpg&quot; alt=&quot;California&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This realization was the nail in the coffin for my studies at Johns Hopkins. The combination of the doubt about my path of study and the needs of my personal life made it clear to me that it was time for me to make a change. Moving to California presented the opportunity to support my fiancee while also simultaneously refining and revitalizing my career plans. I’ll write in detail about my current plans and intellectual objectives in an upcoming blog post, but for now, for the record, I am &lt;em&gt;extremely&lt;/em&gt; excited about both my near- and long-term goals and opportunities, and I look forward to chronicling more of my journey here soon.&lt;/p&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">About my departure from Johns Hopkins, my introduction to CompSci, and moving to California</summary></entry><entry><title type="html">First impressions</title><link href="https://vaer-k.net/blog/personal/2014-09-12-First-impressions/" rel="alternate" type="text/html" title="First impressions" /><published>2014-09-12T00:00:00-07:00</published><updated>2014-09-12T00:00:00-07:00</updated><id>https://vaer-k.net/blog/personal/First-impressions</id><content type="html" xml:base="https://vaer-k.net/blog/personal/2014-09-12-First-impressions/">&lt;p&gt;I’ve been in Baltimore for three months and attended classes for two weeks. Just enough time to gather some first impressions of the PBS department, Johns Hopkins, and what a return to school after a 6-year hiatus entails.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://vaer-k.net/images/jhu.jpg&quot; alt=&quot;desktop screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;june---mid-august&quot;&gt;June - Mid August&lt;/h3&gt;
+
+&lt;p&gt;I arrived in Baltimore about 3 months before the semester began. The Mysore lab is brand new, and in June the lab offices were filled with nothing but echoey spaces. Without classes or lab equipment there was little work for me to do, but arriving early gave me the opportunity to adjust to life in a new city, to take care of administrative tasks (submit tax paperwork and health records, collect student ID card, set up direct deposit, etc.),  and to better familiarize myself with the existing literature of the specific areas of research I’ll be working in, namely neural circuits in attention and stimulus selection. I also spent some time helping to set up the lab, which entailed things like receiving shipments and setting up and organizing various equipment.&lt;/p&gt;
+
+&lt;h3 id=&quot;late-august&quot;&gt;Late August&lt;/h3&gt;
+
+&lt;p&gt;Before the first day of classes, I spent some time attending a handful of orientations for new students. I was surprised at how many were offered: General graduate student orientation (spread over two separate days), new TA orientation, department orientation, and even a trans-university orientation for students from various colleges around Baltimore.&lt;/p&gt;
+
+&lt;p&gt;The PBS department at Hopkins is very welcoming and they made the transition into JHU and the department simple and smooth. Classes began in the last week of August.&lt;/p&gt;
+
+&lt;h3 id=&quot;early-september&quot;&gt;Early September&lt;/h3&gt;
+
+&lt;p&gt;I’m taking two graduate level courses, Advanced Stats and Fundamentals of Psychology &amp;amp; Neuroscience, and one undergrad one, Nervous System I. So far, the undergrad course is actually the more difficult of the three. But most of the work in these classes revolves around readings and exams. I’ve had only one homework assignment. The undergrad course isn’t a required part of my program’s curriculum; my advisor and I just decided that it would be a helpful refresher. Actually, although I’m familiar with the breadth of the material, the topics are covered to a level of depth that I never experience as an undergrad. I’m really enjoying learning the mechanics of things I’ve always wondered about.&lt;/p&gt;
+
+&lt;p&gt;On top of classes, I’ve got to continue participating in what work there is to do in the lab, which so far includes moving the owls into their enclosures in our lab space, feeding them, and attending our weekly lab meetings, where we hold a kind of informal journal club. I’ve got a presentation to give during next week’s meeting, where I’ll present a paper titled &lt;a href=&quot;http://www.sciencemag.org/content/345/6197/660.abstract&quot;&gt;Long-range and local circuits for top-down modulation of visual cortex processing&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finally, I’ve got to assemble an application for the NSF graduate research fellowship, which entails writing a couple essays about my personal history and my research and career objectives.&lt;/p&gt;
+
+&lt;h3 id=&quot;impressions&quot;&gt;Impressions&lt;/h3&gt;
+
+&lt;p&gt;The summer was a breeze, but I wish I’d spent more time on the NSF GRFP. It would be nice not to have extra work to do on top of my coursework and lab duties. Still, all things considered the first few weeks of school have not been too stressful. During the first week I was a bit anxious because it wasn’t clear how many new assignments and obligations would be piled onto my workload, but it seems to have settled and I feel pretty comfortable with it — and I’m even taking an extra, unnecessary course. I’d say the outlook for the semester is good, but I’ll have to keep up a quick pace and avoid falling behind.&lt;/p&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">Haven't been here long, but here's what I think</summary></entry><entry><title type="html">Accepted</title><link href="https://vaer-k.net/blog/personal/2014-06-14-Accepted/" rel="alternate" type="text/html" title="Accepted" /><published>2014-06-14T00:00:00-07:00</published><updated>2014-06-14T00:00:00-07:00</updated><id>https://vaer-k.net/blog/personal/Accepted</id><content type="html" xml:base="https://vaer-k.net/blog/personal/2014-06-14-Accepted/">&lt;p&gt;I put this blog on pause while I worked on my applications for grad school, but now I’m ready to begin chronicling my experiences in academia as I move closer to my degree. The application process was nerve-wracking but I ended up doing all right for myself. I submitted applications to 21 programs in psychology, cognitive science and neuroscience, and received invitations to interview at five schools, four of which extended invitations to me to join their program. All five programs I interviewed for were in psychology, except for one in cognitive science. I ended up accepting the invitation to join the PhD program in psychology at Johns Hopkins.&lt;/p&gt;
+
+&lt;p&gt;One of the most difficult requirements of any college application is the statement of purpose. I found a book called &lt;a href=&quot;http://books.google.com/books?id=GSRHnBGI28wC&amp;amp;printsec=frontcover&amp;amp;dq=978-1607743217&amp;amp;hl=en&amp;amp;sa=X&amp;amp;ei=rPatU8OKONiwyATgroDQCQ&amp;amp;ved=0CDQQ6AEwAQ#v=onepage&amp;amp;q&amp;amp;f=false&quot;&gt;Graduate Admissions Essays, Fourth Edition: Write Your Way into the Graduate School of Your Choice&lt;/a&gt; by Donald Asher, and it proved itself a great resource to me. It’s also inspired me to share my own essay in the hopes of helping others to form their own statements.&lt;/p&gt;
+
+&lt;p&gt;Some programs I applied to asked for a separate essay for the personal history and statement of purpose, but the essay below, which helped me into Hopkins, is a bit of a hybrid between the personal history and statement of purpose, as was required for the application. I wanted to use this essay to convey a sense of my personality so it waxes a bit poetic and cheesy at times, but I really wanted to make sure my application was at least noticed.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;here-is-an-unordered-list&quot;&gt;Here is an unordered list:&lt;/h3&gt;
+&lt;p&gt;I can’t remember what first interested me in the study of memory. Instead I remember standing in my dress whites on the aft end of DDG-54, called the USS Curtis Wilbur, my home at the time and the fourth Arleigh Burke-class guided missile destroyer based out of Yokosuka, Japan. I remember flashes of insight and epiphany that occurred during moments like these, and which, taken together, represent an intermittent series of growing curiosity which led me inevitably to the course of investigation I expect will consume the remainder of my life.&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;Item foo&lt;/li&gt;
-  &lt;li&gt;Item bar&lt;/li&gt;
-  &lt;li&gt;Item baz&lt;/li&gt;
-  &lt;li&gt;Item zip&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;On this particular occasion, during this particular flash of insight, on the stern of my heavily armed abode, I remember leaning against the rails and gazing out past the churning screws that propelled our ship through the Pacific, past the frothy, chaotic waters they troubled, and out to the distant horizon, where I could yet see the long teal trail of our mighty ship’s path, and I remember wondering how it came to be that the water could “remember” our path for so long, and whether or not it were possible that other systems of memory could work in at all a similar fashion, whether even the nervous systems of vertebrates could be found to exhibit some similarities in function. I have yet to answer that question, as the detailed underpinnings of human memory remain of course an unlocked mystery, but I have not stopped asking.&lt;/p&gt;
 
-&lt;h3 id=&quot;and-an-ordered-list&quot;&gt;And an ordered list:&lt;/h3&gt;
+&lt;p&gt;The search for answers is the passion driving my life. The search is what led me to choose to return to school after the military; it’s what drove me to achieve an exemplary GPA, to garner awards like my university’s 2007 Psychology Department tuition stipend; it’s the fire that fueled me through over two years of weekends spent happily volunteering in research labs; and what impels me now to pursue graduate study and, when I’m ready, the latest questions facing the scientific community today.&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;Item one&lt;/li&gt;
-  &lt;li&gt;Item two&lt;/li&gt;
-  &lt;li&gt;Item three&lt;/li&gt;
-  &lt;li&gt;Item four&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;Years ago, however, it was the dream of a life in Japan which I must confess informed my motivation to join the Navy. During high school I worked a part-time job and commuted to and from UC Los Angeles, where I studied Japanese language for three years. It was due to the extra credits from these extracurricular courses that I succeeded in obtaining my high school diploma a year ahead of schedule. I had originally planned to participate in a study abroad program in Japan during my senior year, my life’s dream at the time, but I despaired to find that I had failed to save enough money pay the cost of tuition.&lt;/p&gt;
 
-&lt;h3 id=&quot;and-a-nested-list&quot;&gt;And a nested list:&lt;/h3&gt;
+&lt;p&gt;Driven to succeed at any cost as always, I walked into my local recruitment center and, at 17 years of age, committed four years of my life to service. Life in Japan was indeed a dream; I saw my stuttering Japanese language skills flower into fluid and satisfying fluency, and my eyes were opened to the beauty of communication and the ability to represent in words things which my native tongue had no expression for. From the Japanese I learned there is more than one way: more than one way to communicate ideas, more than one way share feelings, or share a meal; more than one way to perceive color, to pursue ambitions, to interpret the world, to heal a society, to express a human life.&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;level 1 item
-    &lt;ul&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item
-        &lt;ul&gt;
-          &lt;li&gt;level 3 item&lt;/li&gt;
-          &lt;li&gt;level 3 item&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;level 1 item
-    &lt;ul&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;level 1 item
-    &lt;ul&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-      &lt;li&gt;level 2 item&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;level 1 item&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;After leaving the military, I moved back home and soon found a full-time job waiting tables. While I got back on my feet I started taking courses at Orange Coast College and volunteering at the Blind Children’s Learning Center in Santa Ana, California. Many of the children at the center were not only blind or deaf, or blind and deaf, but autistic too. The burdens they carried were heavier than I could ever imagine, but they didn’t seem to know it. The classrooms were filled with the same racket of shouts and singing, crying and laughter you’d expect to find at any other school. The children I worked with are teens now; I hope they still feel the strength of spirit I remember them for, and I’m grateful to have had the lucky opportunity to learn from them at a time when I was in need of their inspiration.&lt;/p&gt;
 
-&lt;h3 id=&quot;small-image&quot;&gt;Small image&lt;/h3&gt;
+&lt;p&gt;Not long after, I left for school in Hawaii with some savings and little more than the clothes on my back. The cost of living was high on the islands; I worked full-time throughout my undergraduate experience and doing so cost me more in time than I earned in money. In spite of the struggle for cash and time, I achieved several honors and awards, including an invitation from the Mortar Board Honor Society and a Psychology Department Tuition Stipend for academic excellence, while successfully maintaining a relatively exemplary 3.77 GPA, with a 4.0 GPA in my major. It was there I forged my commitment to studying the brain, after taking a course in biopsychology my second year. I devoured the textbook for that class, but in the end was left wanting more―understanding then that I wanted to study memory at a much lower level than I had been so far, that I wanted to dive into a far deeper exploration of the brain’s physiology and function. Afterward I knew that I would need to pursue graduate studies if I wanted to satisfy my curiosity.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://assets-cdn.github.com/images/icons/emoji/octocat.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;After graduation I wanted to find experience in my field and pay down some of the debt from my school loans, but I struggled to find any work. Thinking employment opportunities must be limited on such a small island, I moved to California in hopes of finding a position as a research assistant, but discovered that these jobs were few and relatively difficult to obtain anywhere. I felt confident that I could find one if I persevered, but I wondered how I would ever get to graduate school if I couldn’t find the experience I’d need to prepare myself. During this interim I paid the bills by working as a certified computer repair technician at the Genius Bar of an Apple Store, where I acquired an expert proficiency with computers and a finer appreciation for quality of presentation.  Eventually, failing to obtain paid work in my field, I decided to reach out to professors whose work interested me and volunteer my time for free (Now I recognize how common this strategy is and can laugh about my naiveté then, but at the time I thought this was the height of creative ambition.)&lt;/p&gt;
 
-&lt;h3 id=&quot;large-image&quot;&gt;Large image&lt;/h3&gt;
+&lt;p&gt;Since then I have been gifted with powerfully instructive experiences, but I am most grateful for the trials and lessons of the events in my life that led me here. I have struggled financially to support myself through college, but this has taught me to appreciate the full value of an education, and to better recognize the far greater barriers that those much less fortunate have had to cross just to achieve the same accomplishments. The ship I served on in the Navy, the Curtis Wilbur, dropped anchor in places where people are lucky to live at all, let alone pursue their dreams. Taking the job as a Genius at Apple in lieu of a research position taught me to reign in my ambition and take a step back, to slow down and build a stronger foundation before moving on to loftier goals.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://guides.github.com/activities/hello-world/branching.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;And the lessons continue. At present, fortune has made me an assistant at the Brisbane Library. My job is to create educational programming for children, teens and adults. I independently plan and execute science-related programming for teens at multiple libraries in San Mateo county. Throughout the course of these programs, I teach teens to solder and program electronics, conduct basic experiments in chemistry, physics and biology, and generate new ideas for future projects. Recently our teens soldered and assembled a neural signal amplifier from basic parts, and we used it to analyze action potentials of real neurons in live cockroaches and earthworms. Many of the teens in the program come from underprivileged homes, and haven’t had much experience with these kinds of activities. I delight in that priceless moment when they see their hard-wrought code successfully executed or their predictions experimentally validated. Sometimes, at the end of an experiment, when we’re tying up the ends of our investigation, that kid slacking off in the back will look up, eyes filled with epiphany, and ask a question so pertinent we end up designing a new round of experiments centered around it. The resultant glow on that kid’s face is an inspiring sight.&lt;/p&gt;
 
-&lt;h3 id=&quot;definition-lists&quot;&gt;Definition lists&lt;/h3&gt;
+&lt;p&gt;I can’t help but feel it’s our responsibility and our honor to lift up the people around us, to strive to bring light to the dark places. What better place to start than at the intersection of mind and body? There is no current science more riveting, more promising, than modern neuroscience. The hopelessly tangled complexity of an organ as vast and uncharted as the stars; the desperate morass of our still feeble collective understanding of its function; the frustratingly indecipherable, cryptic chatter of hundreds of billions of neurons endlessly slinging messages around our skulls; all of this serves only to excite and spur my fascination. This is what gets me out of bed in the morning.&lt;/p&gt;
 
-&lt;dl&gt;
-  &lt;dt&gt;Name&lt;/dt&gt;
-  &lt;dd&gt;Godzilla&lt;/dd&gt;
-  &lt;dt&gt;Born&lt;/dt&gt;
-  &lt;dd&gt;1952&lt;/dd&gt;
-  &lt;dt&gt;Birthplace&lt;/dt&gt;
-  &lt;dd&gt;Japan&lt;/dd&gt;
-  &lt;dt&gt;Color&lt;/dt&gt;
-  &lt;dd&gt;Green&lt;/dd&gt;
-&lt;/dl&gt;
+&lt;p&gt;What is more central to the human experience than memory? I first became aware that I wanted to study memory for life when I discovered Dr. Douglas Hofstadter, according to whom the entirety of human cognition is an emergent property owing its existence to this one evolutionarily favored trait. His book, Gödel, Escher, and Bach: an Eternal Golden Braid, ignited a furious passion in me for exploring the convergence of mind and machine, and consequently my interest in the brain was coupled with a newfound interest in information processing and computational analysis. Later, my undergraduate education would introduce me to many great early investigations such as those led by famed Drs. Roger Sperry and Michael Gazzaniga, whose work on “split-brain” patients I admired for its insight and precise methodology, and which compounded my nascent interests with the intrigue of functional connectivity.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this. Or is it?
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;That interest in functional connectivity led me to the next stage of my development at the Lifespan Human Senses Lab at San Diego State University, where I experienced firsthand the nuts and bolts of daily work in science for the first time as a volunteer research assistant. This initial experience gave me a taste of basic methodology, experimental design and data analysis, and my technical skills were transformed by the extensive use of the command line, the Python programming language, and IBM SPSS statistics software. Under the mentorship of Dr. Claire Murphy, I worked independently to investigate the association between MRI measures of structural integrity and fMRI activation during olfactory recognition memory tasks. I sought to identify anatomical substrates explaining differences in fMRI activity and disrupted connectivity in older adult carriers of the ε4 allele of apolipoprotein E, a gene which previous studies have shown to be associated with Alzheimer’s Disease. We hypothesized that lower volumes and/or thinner entorhinal cortex (EC) would be associated with less activation in frontal and medial temporal lobe regions and specifically in anterior cingulate cortex during retrieval in the odor recognition memory task.  We further hypothesized that these measures of EC integrity and the volume of the hippocampus would be associated with measures of functional connectivity, and specifically investigated whether EC or hippocampus contributed more to the functional connectivity efficiency. Results were presented in poster form at the Gerontological Society for America 2012 Annual Scientiﬁc Meeting. Concurrent with my independent study, I assisted with other studies conducted at the lab, where I had the opportunity to assist in performance of neuropsychological testing and fMRI scans of participants as part of an ongoing imaging study.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The final element.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://vaer-k.net/assets/img/example-content-ii.jpg" /></entry><entry><title type="html">Hydejack’s New Design</title><link href="https://vaer-k.net/blog/hydejack/2017-11-17-hydejacks-new-design/" rel="alternate" type="text/html" title="Hydejack's New Design" /><published>2017-11-17T00:00:00-08:00</published><updated>2017-11-17T00:00:00-08:00</updated><id>https://vaer-k.net/blog/hydejack/hydejacks-new-design</id><content type="html" xml:base="https://vaer-k.net/blog/hydejack/2017-11-17-hydejacks-new-design/">&lt;p&gt;While v7 brings an &lt;a href=&quot;/CHANGELOG/#v700&quot;&gt;insane amount of new stuff&lt;/a&gt;, the most notable change is the new background image.
-It is no longer &lt;em&gt;anti-selling&lt;/em&gt; the theme.
-The old image was a blurred version of Napoleon Bonaparte, which was just… weird. I could tell the story of how this came to be,
-but I’d rather show you the new and improved background image.&lt;/p&gt;
+&lt;p&gt;These days my interests have been heavily influenced by my experiences at the Gazzaley Lab at UC San Francisco, where I have spent over a year volunteering as a research assistant learning to appreciate the finer details of complex frequency analysis. Under the mentorship of Dr. Morgan Hough, I am working with a team at the Gazzaley Lab to study neuronal synchronization underlying selective attention in magnetoencephalography (MEG) recordings. I am also writing programs in Python using the MNE-Python MEG/EEG analysis suite and the R statistics programming language to analyze power spectral density in resting state MEG data.&lt;/p&gt;
 
-&lt;h2 id=&quot;new-background-image&quot;&gt;New background image&lt;/h2&gt;
-&lt;p&gt;Yes, it’s an aerial shot of a beach (&lt;a href=&quot;https://duckduckgo.com/?q=ios+11+background&amp;amp;t=ffab&amp;amp;iax=images&amp;amp;ia=images&quot;&gt;so hot right now&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;I would like to continue exploring the neural characteristics of cognition, attention and memory, and doctoral study at the Johns Hopkins University would be an excellent opportunity to work directly with first-rate neuroimaging facilities and expert faculty. In fact, the combination of world class facilities with close contact with professors is what most attracts me to the program. My long-term goal is to help discover as-yet unrecognized methods of neural communication and encoding, and to interrogate neural activity to identify functional connections. My background and research plans are a close match with the work of… [and here are 100 words describing my possible match with three professors whose work seemed to align with my interests. This is the only part of the essay I didn’t feel like sharing.]&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/caleb-george.jpg&quot; alt=&quot;Hydejack's background image&quot; class=&quot;lead&quot; width=&quot;1920&quot; height=&quot;1200&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I have so much hard work ahead of me, but that’s what builds me up, makes me stronger. I have so much to learn too, but that’s the fun part, and I’m confident that there will be many capable friends and teachers to guide me through challenges along the way. I’m determined to see my education through and I’m ready to make a difference, great or small, in our collective understanding of our ourselves and our place in the world―and I’m excited to be there for every step of the journey.&lt;/p&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">how I got in</summary></entry><entry><title type="html">Coding on a Chromebook budget</title><link href="https://vaer-k.net/blog/personal/2013-10-25-Coding-on-a-Chromebook-budget/" rel="alternate" type="text/html" title="Coding on a Chromebook budget" /><published>2013-10-25T00:00:00-07:00</published><updated>2013-10-25T00:00:00-07:00</updated><id>https://vaer-k.net/blog/personal/Coding-on-a-Chromebook-budget</id><content type="html" xml:base="https://vaer-k.net/blog/personal/2013-10-25-Coding-on-a-Chromebook-budget/">&lt;p&gt;I volunteer as a research assistant at the Gazzaley Lab at UC San Francisco. My tasks involve a lot of data analysis, and this means I write a lot of code, just scripts really, but I’m on the command line all day. I don’t make enough money from my day job to be able to afford a full-blown laptop, let alone one of those newfangled Apple MacBooks. So what does a guy like me, who can’t afford (or want) an expensive MacBook do when he needs to add a little mobility to his work?&lt;/p&gt;
 
-&lt;p&gt;Q: What has this picture to do with Hydejack?
-Nothing really, I just like how it looks.
-However: Boat → Pirates → Hijacking → Hydejack (illuminati confirmed)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://vaer-k.net/images/goldengate.jpg&quot; alt=&quot;desktop screenshot&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Even though it is a free image from &lt;a href=&quot;https://unsplash.com/&quot;&gt;Unsplash&lt;/a&gt; (…), it’s unique in the sense that
-I’ve modified it so it looks better inside the sidebar.
-Specifically, I’ve straightened out the beach and rotated the boat so that it sits at a nice 90 degree angle.&lt;/p&gt;
+&lt;p&gt;I got a Chromebook. I’ve only had it for a few days, but I’ve had several opportunities to work all day long on it, and I have to say it has been pure joy. I have yet to find a practical need of mine which this thing cannot fulfill. Every time I think I’ve run into an issue I find that there is a comfortable workaround.&lt;/p&gt;
 
-&lt;p&gt;For comparison, here is the non-euclidean mess the &lt;a href=&quot;https://unsplash.com/photos/AtvuPUenaeI&quot;&gt;original photo&lt;/a&gt; was. Pretty OCD, I know.&lt;/p&gt;
+&lt;p&gt;First and foremost I was concerned about developing on a Chromebook, but I ran across an article a few weeks ago (lost the link, sorry) which introduced to me a web-based service called &lt;a href=&quot;http://www.nitrous.io/&quot;&gt;Nitrous.IO&lt;/a&gt;, and I have to say that these guys are awesome. Their support is fast and friendly. The service gives you access to a full developing IDE and a completely usable terminal. The Chromebook does have a terminal but it is quite limited in application. The terminal in Nitrous.IO is fantastic. Prefer Vim or GNU Emacs? No problem. Want to be able to edit your .vimrc or .ssh config file? SSH or VNC your thing? You can do that too. I use the service to SSH into servers to do the heavy lifting, and I have yet to feel any limitations.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/caleb-george-old.jpg&quot; alt=&quot;Original photo&quot; class=&quot;lead&quot; width=&quot;1920&quot; height=&quot;1200&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://vaer-k.net/images/nitrous.png&quot; alt=&quot;desktop screenshot&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;new-color-palette&quot;&gt;New color palette&lt;/h2&gt;
-&lt;p&gt;I’ve extracted the major colors from the background image, which now form Hydejack’s color palette:&lt;/p&gt;
+&lt;p&gt;For virtually every other work need I have, there’s Google Drive and Google Docs. I’m sold on this stuff. I have simple, practical needs. I don’t need a lot of flash and sparkle, and the convenience and access provided by these online services is invaluable. Hell, even if I do need a little sparkle, I’m more and more impressed every year with what you can make happen in Google Docs. And they’re really pushing hard in developing that that arena lately.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/COLOURlovers.com-Hydejack.png&quot; alt=&quot;Hydejacks's color palette&quot; style=&quot;border: 1px solid #ddd&quot; width=&quot;1024&quot; height=&quot;200&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;new-logo&quot;&gt;New logo&lt;/h2&gt;
-&lt;p&gt;Hydejack also has a new logo, which is based on the new color palette.
-It also features the best font on Google Fonts, and probably the world: &lt;a href=&quot;https://fonts.google.com/specimen/Roboto+Slab&quot;&gt;Roboto Slab&lt;/a&gt;
-(which is to say, I like it a lot).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/icons/icon.png&quot; alt=&quot;Hydejack's logo&quot; width=&quot;192&quot; height=&quot;192&quot; /&gt;&lt;/p&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">While v7 brings an insane amount of new stuff, the most notable change is the new background image. It is no longer anti-selling the theme. The old image was a blurred version of Napoleon Bonaparte, which was just… weird. I could tell the story of how this came to be, but I’d rather show you the new and improved background image.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://vaer-k.net/assets/img/caleb-george.jpg" /></entry><entry><title type="html">Better Gem Support (v6.5)</title><link href="https://vaer-k.net/blog/hydejack/2017-07-27-better-gem-support/" rel="alternate" type="text/html" title="Better Gem Support (v6.5)" /><published>2017-07-27T00:00:00-07:00</published><updated>2017-07-27T00:00:00-07:00</updated><id>https://vaer-k.net/blog/hydejack/better-gem-support</id><content type="html" xml:base="https://vaer-k.net/blog/hydejack/2017-07-27-better-gem-support/">&lt;p&gt;This maintenance release includes various quality-of-life improvements,
-especially when using the gem-based version of the theme.
-These changes come in handy when using Hydejack for a quick (project-) page:
-The &lt;code class=&quot;highlighter-rouge&quot;&gt;home&lt;/code&gt; layout, which is used when using &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll new&lt;/code&gt;,
-is now a proper layout that displays a few posts/pages below the regular content,
-and it is again possible to define an author in &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;
-without setting up a &lt;code class=&quot;highlighter-rouge&quot;&gt;_data&lt;/code&gt; directory (for more, see blow).&lt;/p&gt;
-
-&lt;p&gt;Version 6.5 also includes smaller design adjustments.
-Most notably, the default font is now Noto Sans.
-With the benefit of hindsight,
-using a serif font in combination with the slab headings feels more like a bug in the design than anything else.
-However, should you be happy with Noto Serif (the previous default font), there is no need to worry
-— this only effects the default setting.&lt;/p&gt;
-
-&lt;p&gt;For the full patch notes, read on.&lt;/p&gt;
-
-&lt;h2 id=&quot;patch-notes&quot;&gt;Patch Notes&lt;/h2&gt;
-&lt;h3 id=&quot;added&quot;&gt;Added&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Hydejack now uses additional Jekyll plugins by default, which make working with GitHub more convenient.
-They have been added to the &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;.
-Note that existing users need to update their &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;:&lt;/p&gt;
-
-    &lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;gems&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jekyll-default-layout&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# new&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jekyll-feed&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jekyll-optional-front-matter&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# new&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jekyll-paginate&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jekyll-redirect-from&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jekyll-relative-links&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# new&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jekyll-sitemap&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Added &lt;code class=&quot;highlighter-rouge&quot;&gt;licenses&lt;/code&gt; folder that includes the full license texts of licenses mentioned in &lt;code class=&quot;highlighter-rouge&quot;&gt;NOTICE.md&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;You can, once again, define the author in &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;.
-Using &lt;code class=&quot;highlighter-rouge&quot;&gt;_data/authors.yml&lt;/code&gt; is still recommended (and takes precedence),
-but this option is more convenient when setting up a quick (project-) page using the gem-based theme.
-Also, a mini-version of &lt;code class=&quot;highlighter-rouge&quot;&gt;_data/social.yml&lt;/code&gt; can be provided as part &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;, e.g.:&lt;/p&gt;
-
-    &lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;social&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;https://github.com/qwtel/hydejack&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;npm&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;https://www.npmjs.com/package/hydejack&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;download&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;https://github.com/qwtel/hydejack/archive/v8.0.0-beta.8.zip&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;data_social&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GitHub&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;icon-github&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;npm&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;npm&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;icon-npm&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;download&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Download&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;icon-box-add&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;A download icon has been added to the default icon font and &lt;code class=&quot;highlighter-rouge&quot;&gt;_data/social.yml&lt;/code&gt; has been updated.&lt;/li&gt;
-  &lt;li&gt;Added &lt;code class=&quot;highlighter-rouge&quot;&gt;_includes/my-scripts.html&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;_sass/my-inline.scss&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;_sass/my-style.scss&lt;/code&gt; to make it easier to add custom scripts and styles without modifying the source. This is especially handy when using the gem-based version of the theme.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;changed&quot;&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Loading web fonts now starts earlier and content download no longer blocks
-swapping out the fallback font for the new font.
-Previously, a page containing lots of images could have delayed displaying the web fonts significantly.&lt;/li&gt;
-  &lt;li&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;home&lt;/code&gt; layout no longer contains a message suggesting that you don’t use it.&lt;/li&gt;
-  &lt;li&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;home&lt;/code&gt; layout now shows up to 5 blog posts and up to 5 pages blow the regular content.&lt;/li&gt;
-  &lt;li&gt;The version history has been moved from &lt;code class=&quot;highlighter-rouge&quot;&gt;docs/&amp;lt;version&amp;gt;/versions.md&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;CHANGELOG.md&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;The license notices have been moved from &lt;code class=&quot;highlighter-rouge&quot;&gt;docs/&amp;lt;version&amp;gt;/licenses.md&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;NOTICE.md&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Updated gem and npm dependencies&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;design&quot;&gt;Design&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;The default font has been changed from “Noto Serif” to “Noto Sans”.
-If you have a &lt;code class=&quot;highlighter-rouge&quot;&gt;font&lt;/code&gt; entry in &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;, this will have no effect.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;nap.jpg&lt;/code&gt; is no longer used as default background image in the gem-based theme.&lt;/li&gt;
-  &lt;li&gt;The sidebar content width is now limited to the width of the sidebar (this only effects large screens).&lt;/li&gt;
-  &lt;li&gt;Project cards and pagination buttons now have slightly rounded borders for a less “rigid” look.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;how-to-restore-the-old-styles&quot;&gt;How to restore the old styles&lt;/h4&gt;
-&lt;p&gt;If you would like to use the old font, add the following to &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;font_heading&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Roboto&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Slab',&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Helvetica,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Arial,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;sans-serif&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;font&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;         &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Noto&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Serif',&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Georgia,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;serif&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;google_fonts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Roboto+Slab:700|Noto+Serif:400,400i,700,700i&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you were relying on the default setting for the background image, add the following to &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/hydejack/assets/img/nap.jpg&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Note that you have to replace &lt;code class=&quot;highlighter-rouge&quot;&gt;/hydejack&lt;/code&gt; with your &lt;code class=&quot;highlighter-rouge&quot;&gt;baseurl&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;To restore the old sidebar, open (or create) &lt;code class=&quot;highlighter-rouge&quot;&gt;_sass/my-inline.scss&lt;/code&gt; and add the following:&lt;/p&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;@media&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;screen&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.sidebar-sticky&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;To remove the border radius, open (or create) &lt;code class=&quot;highlighter-rouge&quot;&gt;_sass/my-inline.scss&lt;/code&gt; and add the following:&lt;/p&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.card&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.pagination-item&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">This maintenance release includes various quality-of-life improvements, especially when using the gem-based version of the theme. These changes come in handy when using Hydejack for a quick (project-) page: The home layout, which is used when using jekyll new, is now a proper layout that displays a few posts/pages below the regular content, and it is again possible to define an author in _config.yml without setting up a _data directory (for more, see blow).</summary></entry><entry><title type="html">Related Projects and Data Tables (v6.4)</title><link href="https://vaer-k.net/blog/hydejack/2017-06-21-related-projects-and-data-tables/" rel="alternate" type="text/html" title="Related Projects and Data Tables (v6.4)" /><published>2017-06-21T00:00:00-07:00</published><updated>2017-06-21T00:00:00-07:00</updated><id>https://vaer-k.net/blog/hydejack/related-projects-and-data-tables</id><content type="html" xml:base="https://vaer-k.net/blog/hydejack/2017-06-21-related-projects-and-data-tables/">&lt;p&gt;In this release I’ve added a “Other Projects” section to the bottom of each project page,
-making it easier for users to navigate through your collection and discover other projects.
-Also, it’s now possible to display larger (data-) tables that were previously cut off (especially on mobile devices).&lt;/p&gt;
-
-&lt;p&gt;For more on how to add tables, see the new section in &lt;a href=&quot;/docs/8.0.0-beta.8/writing/&quot;&gt;docs/writing&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Smaller changes include a reduced usage of horizontal lines and a more “semantic” use of &lt;code class=&quot;highlighter-rouge&quot;&gt;hr&lt;/code&gt; elements.
-Specifically, the semantics of the resume layout have been improved.
-This is best visualized when viewing the page with a text browser like &lt;code class=&quot;highlighter-rouge&quot;&gt;w3m&lt;/code&gt;.
-For example, before 6.4 the skills section looked like&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Skills
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Web Development | Level: Master
-
-Keywords:
-
-  • HTML
-  • CSS
-  • Javascript
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Compression | Level: Master
-
-Keywords:
-
-  • Mpeg
-  • MP4
-  • GIF
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;(lots of &lt;code class=&quot;highlighter-rouge&quot;&gt;hr&lt;/code&gt;s, skill level as part of the headline 😕)&lt;/p&gt;
-
-&lt;p&gt;Now it looks like&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Skills
-
-Web Development
-    Level: Master
-    Keywords:
-      □ HTML
-      □ CSS
-      □ Javascript
-Compression
-    Level: Master
-    Keywords:
-      □ Mpeg
-      □ MP4
-      □ GIF
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;(using a &lt;code class=&quot;highlighter-rouge&quot;&gt;dl&lt;/code&gt;, so that &lt;code class=&quot;highlighter-rouge&quot;&gt;Level -&amp;gt; &quot;Master&quot;&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Keywords -&amp;gt; ul&lt;/code&gt;, …)&lt;/p&gt;
-
-&lt;p&gt;There’s many more minor changes and fixes that you can read below.&lt;/p&gt;
-
-&lt;h2 id=&quot;patch-notes&quot;&gt;Patch Notes&lt;/h2&gt;
-&lt;h3 id=&quot;minor&quot;&gt;Minor&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Added “Other Projects” section to the bottom of the project layout (similar to “Related Posts”)&lt;/li&gt;
-  &lt;li&gt;Added CSS classes that make viewing larger (data-) tables possible&lt;/li&gt;
-  &lt;li&gt;Added section on tables to &lt;a href=&quot;/docs/8.0.0-beta.8/writing/&quot;&gt;docs/writing&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Reduced use of &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;hr/&amp;gt;&lt;/code&gt; elements, using CSS borders instead.&lt;/li&gt;
-  &lt;li&gt;Improved semantic HTML of resume&lt;/li&gt;
-  &lt;li&gt;Follow favicon best practices and include example icons&lt;/li&gt;
-  &lt;li&gt;Added &lt;code class=&quot;highlighter-rouge&quot;&gt;no_google_fonts&lt;/code&gt; option&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;design&quot;&gt;Design&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Reduced number of horizontal lines, making many layouts feel less “cluttered” (esp. &lt;code class=&quot;highlighter-rouge&quot;&gt;blog&lt;/code&gt; layout)&lt;/li&gt;
-  &lt;li&gt;Made link hover styles consistent across the board&lt;/li&gt;
-  &lt;li&gt;Visually separated &lt;code class=&quot;highlighter-rouge&quot;&gt;thead&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;tbody&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;tfoot&lt;/code&gt; within tables.&lt;/li&gt;
-  &lt;li&gt;Changed RSS and email icons&lt;/li&gt;
-  &lt;li&gt;Removed top margin for consecutive headings, e.g. when using &lt;code class=&quot;highlighter-rouge&quot;&gt;h3&lt;/code&gt; immediately after &lt;code class=&quot;highlighter-rouge&quot;&gt;h2&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;fixes&quot;&gt;Fixes&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Fixed bug that caused inline math to be moved to the end of a paragraph when dynamically loading a page.&lt;/li&gt;
-  &lt;li&gt;Fixed bug that caused layout to break in IE11.&lt;/li&gt;
-  &lt;li&gt;Fixed bug that caused the project animation to “jump” when using long project titles.&lt;/li&gt;
-  &lt;li&gt;No more empty attributes on &lt;code class=&quot;highlighter-rouge&quot;&gt;img&lt;/code&gt; tags.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">In this release I’ve added a “Other Projects” section to the bottom of each project page, making it easier for users to navigate through your collection and discover other projects. Also, it’s now possible to display larger (data-) tables that were previously cut off (especially on mobile devices).</summary></entry><entry><title type="html">Third Party Scripts (v6.3)</title><link href="https://vaer-k.net/blog/hydejack/2017-06-06-third-party-scripts/" rel="alternate" type="text/html" title="Third Party Scripts (v6.3)" /><published>2017-06-06T00:00:00-07:00</published><updated>2017-06-06T00:00:00-07:00</updated><id>https://vaer-k.net/blog/hydejack/third-party-scripts</id><content type="html" xml:base="https://vaer-k.net/blog/hydejack/2017-06-06-third-party-scripts/">&lt;p&gt;This release makes including third party plugins easier.
-Until now, the push state approach to loading new pages has been interfering with embedded &lt;code class=&quot;highlighter-rouge&quot;&gt;script&lt;/code&gt; tags.
-This version changes this by simulating the sequential loading of script tags on a fresh page load.&lt;/p&gt;
-
-&lt;p&gt;This approach should work in a majority of cases, but can still cause problems with scripts that can’t be added more than once per page.
-If an issue can’t be resolved, there’s now the option to disable push state by setting &lt;code class=&quot;highlighter-rouge&quot;&gt;disable_push_state: true&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;config.yml&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;whats-happening&quot;&gt;What’s happening?&lt;/h2&gt;
-&lt;p&gt;The problem is as follows:
-When the browser encounters a &lt;code class=&quot;highlighter-rouge&quot;&gt;script&lt;/code&gt; tag while parsing a HTML page it will stop (possibly to make a request to fetch
-an external script) and then execute the code before continuing parsing the page
-(it’s easy to how this can make your page really slow, but that’s a different topic).&lt;/p&gt;
-
-&lt;p&gt;In any case, due of this behavior you can do things like include jQuery,
-then run code that depends on jQuery in the next script tag:&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.../jquery.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'#tabs'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;someJQueryFunction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// works&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;I’d consider this an anti-pattern for the reason mentioned above,
-but it remains common and has the advantage of being easy to understand.&lt;/p&gt;
-
-&lt;p&gt;However, things break when Hydejack dynamically inserts new content into the page.
-It works fine for standard markdown content like &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt; tags,
-but when inserting &lt;code class=&quot;highlighter-rouge&quot;&gt;script&lt;/code&gt; tags the browser will execute them immediately and in parallel,
-because in most cases this is what you’d want.
-However, this means that &lt;code class=&quot;highlighter-rouge&quot;&gt;$('#tabs').someJQueryFunction();&lt;/code&gt; will run while the HTTP request for jQuery is still
-in progress — and we get an error that &lt;code class=&quot;highlighter-rouge&quot;&gt;$&lt;/code&gt; isn’t defined, or similar.&lt;/p&gt;
-
-&lt;p&gt;From this description the solution should be obvious: Insert the &lt;code class=&quot;highlighter-rouge&quot;&gt;script&lt;/code&gt; tags one-by-one,
-to simulate how they would get executed if it was a fresh page request.
-In fact this is how Hydejack is now handling things (and thanks to rxjs’ &lt;code class=&quot;highlighter-rouge&quot;&gt;concatMap&lt;/code&gt; it was easy to implement),
-but unfortunately this is not a magic solution that can fix all problems:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Some scripts may throw when running on the same page twice&lt;/li&gt;
-  &lt;li&gt;Some scripts rely on the document’s &lt;code class=&quot;highlighter-rouge&quot;&gt;load&lt;/code&gt; event, which has fired long before the script was inserted&lt;/li&gt;
-  &lt;li&gt;unkown-unkowns&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;But what will “magically” solve all third party script problems, is disabling dynamic page loading altogether,
-for which there’s now an option.
-To make this a slightly less bitter pill to swallow,
-there’s now a CSS-only “intro” animation that looks similar to the dynamic one.
-Maybe you won’t even notice the difference.&lt;/p&gt;
-
-&lt;h2 id=&quot;patch-notes&quot;&gt;Patch Notes&lt;/h2&gt;
-&lt;h3 id=&quot;minor&quot;&gt;Minor&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Support embedding &lt;code class=&quot;highlighter-rouge&quot;&gt;script&lt;/code&gt; tags in markdown content&lt;/li&gt;
-  &lt;li&gt;Add &lt;code class=&quot;highlighter-rouge&quot;&gt;disable_push_state&lt;/code&gt; option to &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Add &lt;code class=&quot;highlighter-rouge&quot;&gt;disable_drawer&lt;/code&gt; option to &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Rename syntax highlighting file to &lt;code class=&quot;highlighter-rouge&quot;&gt;syntax.scss&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Added &lt;a href=&quot;/docs/8.0.0-beta.8/scripts/&quot;&gt;chapter on third party scripts&lt;/a&gt; to documentation&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;design&quot;&gt;Design&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Add subtle intro animation&lt;/li&gt;
-  &lt;li&gt;Rename “Check out X for more” to “See X for more” on welcome* page&lt;/li&gt;
-  &lt;li&gt;Replace “»” with “→” in “read more”-type of links&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;fixes&quot;&gt;Fixes&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Fix default color in gem-based theme&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">This release makes including third party plugins easier. Until now, the push state approach to loading new pages has been interfering with embedded script tags. This version changes this by simulating the sequential loading of script tags on a fresh page load.</summary></entry><entry><title type="html">JavaScripten (v6)</title><link href="https://vaer-k.net/blog/hydejack/2017-05-03-javascripten/" rel="alternate" type="text/html" title="JavaScripten (v6)" /><published>2017-05-03T00:00:00-07:00</published><updated>2017-05-03T00:00:00-07:00</updated><id>https://vaer-k.net/blog/hydejack/javascripten</id><content type="html" xml:base="https://vaer-k.net/blog/hydejack/2017-05-03-javascripten/">&lt;p&gt;Hydejack has always featured a JavaScript-heavy sidebar, but other than that, JS has been used sparingly.
-This changes with this release, which adds a ton of (optional) code that changes the feel of the theme dramatically.&lt;/p&gt;
-
-&lt;h2 id=&quot;major&quot;&gt;Major&lt;/h2&gt;
-&lt;p&gt;Pages are now loaded and swapped through JavaScript. This has a number of effects.
-First of all, it looks cool, but the animations aren’t just about aesthetics:
-They also help to hide the network time of fetching the next page, making the entire site feel faster.
-At the same time, the &lt;abbr title=&quot;Flash of Unstyled Content&quot;&gt;FOUC&lt;/abbr&gt; introduced in the last release will no longer occur (except on the initial page load).&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Most JS is now unified in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_js&lt;/code&gt; directory and written in ES2016.&lt;/li&gt;
-  &lt;li&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;blog-by-tag&lt;/code&gt; layout has been renamed to &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;public&lt;/code&gt; folder has been renamed to &lt;code class=&quot;highlighter-rouge&quot;&gt;assets&lt;/code&gt; to make the theme compatible with Jekyll’s gem-based themes.&lt;/li&gt;
-  &lt;li&gt;Tags are now supported via Jekyll Collections instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;_data&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;The sidebar can now add links to all kinds of pages.&lt;/li&gt;
-  &lt;li&gt;Categories are now supported.&lt;/li&gt;
-  &lt;li&gt;Author information moved to &lt;code class=&quot;highlighter-rouge&quot;&gt;_data/authors.yml&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Added support for multiple authors.&lt;/li&gt;
-  &lt;li&gt;Using &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll-feed&lt;/code&gt; plugin (supported on GitHub Pages) instead of custom solution.&lt;/li&gt;
-  &lt;li&gt;Added &lt;code class=&quot;highlighter-rouge&quot;&gt;about&lt;/code&gt; layout.&lt;/li&gt;
-  &lt;li&gt;Added &lt;code class=&quot;highlighter-rouge&quot;&gt;not-found&lt;/code&gt; layout.&lt;/li&gt;
-  &lt;li&gt;Added &lt;code class=&quot;highlighter-rouge&quot;&gt;redirect&lt;/code&gt; layout&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;See the &lt;a href=&quot;/docs/8.0.0-beta.8/upgrade/&quot;&gt;the migration guide&lt;/a&gt; for instructions on how to upgrade.&lt;/p&gt;
-
-&lt;h2 id=&quot;minor&quot;&gt;Minor&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;The “accent” font (heading font) is now used for all headings.
-This gives the theme a “bolder” look and was necessary for the animation: link =&amp;gt; heading.&lt;/li&gt;
-  &lt;li&gt;Changed default text font from “PT Serif” to “Noto Serif”.&lt;/li&gt;
-  &lt;li&gt;Added &lt;a href=&quot;/docs/8.0.0-beta.8/writing/&quot;&gt;CSS classes&lt;/a&gt; for styling markdown content.&lt;/li&gt;
-  &lt;li&gt;Links have a new style.
-They now always display an underline to make the choice of the link color less critical (darker colors were hard to
-distinguish from regular text).&lt;/li&gt;
-  &lt;li&gt;Made social media icons larger and easier to tap.&lt;/li&gt;
-  &lt;li&gt;Social media icons are now also part of the “about” sections of a post.&lt;/li&gt;
-  &lt;li&gt;Added support for a copyright notice at the bottom. Can be set via the config variable &lt;code class=&quot;highlighter-rouge&quot;&gt;copyright&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Changed responsive breakpoints and added support for very large displays.&lt;/li&gt;
-  &lt;li&gt;The site is now printable.&lt;/li&gt;
-  &lt;li&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;blog&lt;/code&gt; layout now only shows the excerpt instead of the full post.&lt;/li&gt;
-  &lt;li&gt;Links to external pages are now marked with a symbol.&lt;/li&gt;
-  &lt;li&gt;Added margin above social media icons to prevent accidental tapping&lt;/li&gt;
-  &lt;li&gt;Added gem files so that &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle install&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt; work&lt;/li&gt;
-  &lt;li&gt;Disabled HTML minification when running via &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Added dingbat to signal end of post&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;fixes&quot;&gt;Fixes&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Related posts is no longer blank for posts that do not belong to a category.&lt;/li&gt;
-  &lt;li&gt;Footnotes now use the text version of “leftwards arrow with hook” instead of the emoji on iOS.&lt;/li&gt;
-  &lt;li&gt;Text is no longer invisible while waiting for Google Fonts to load.&lt;/li&gt;
-  &lt;li&gt;Always show scrollbar to prevent layout “jumps”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/qwtel/hydejack/releases/tag/v8.0.0-beta.8&quot;&gt;Get &lt;em&gt;JavaScripten&lt;/em&gt; on GitHub&lt;/a&gt;&lt;/p&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">Hydejack has always featured a JavaScript-heavy sidebar, but other than that, JS has been used sparingly. This changes with this release, which adds a ton of (optional) code that changes the feel of the theme dramatically.</summary></entry><entry><title type="html">The Fast One (v5)</title><link href="https://vaer-k.net/blog/hydejack/2016-09-17-the-fast-one/" rel="alternate" type="text/html" title="The Fast One (v5)" /><published>2016-09-17T00:00:00-07:00</published><updated>2016-09-17T00:00:00-07:00</updated><id>https://vaer-k.net/blog/hydejack/the-fast-one</id><content type="html" xml:base="https://vaer-k.net/blog/hydejack/2016-09-17-the-fast-one/">&lt;p&gt;This major release increases page load speed dramatically.
-The page now scores roughly 90/100 on &lt;a href=&quot;https://developers.google.com/speed/pagespeed/insights/?url=http%3A%2F%2Fqwtel.com%2Fhydejack%2F&quot;&gt;Google’s PageSpeed Insights&lt;/a&gt; (up from ~50) and
-has a high score on similar tools.&lt;/p&gt;
-
-&lt;p class=&quot;message&quot;&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: This post is outdated and only included for legacy reasons.
-See the &lt;a href=&quot;/docs/8.0.0-beta.8/&quot; class=&quot;heading flip-title&quot;&gt;Documentation&lt;/a&gt; for up-to-date instructions.&lt;/p&gt;
-
-&lt;p&gt;Most importantly, the critical rendering path is no longer blocked by loading styles or scripts,
-meaning the site becomes visible faster.&lt;/p&gt;
-
-&lt;p&gt;Page load speed matters to Google, but is also &lt;em&gt;very&lt;/em&gt; apparent to visitors with slow internet connections.&lt;/p&gt;
-
-&lt;p&gt;However, as a side effect of these optimizations, the site now has a visible &lt;abbr title=&quot;Flash Of Unstyled Content&quot;&gt;FOUC&lt;/abbr&gt;.
-Future versions might address this,
-but it is the currency in which loading speed is being payed for and can not be fully avoided.&lt;/p&gt;
-
-&lt;h2 id=&quot;major&quot;&gt;Major&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;HTML, CSS and JS served minified.&lt;/li&gt;
-  &lt;li&gt;JS downloading starts only after the rest of the page is rendered.&lt;/li&gt;
-  &lt;li&gt;Critical CSS (above-the-fold) is inlined into the document, the rest is fetched later.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;In order to minify the CSS and make it more modular it has been rewritten in SCSS.&lt;/p&gt;
-
-&lt;h2 id=&quot;minor&quot;&gt;Minor&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Colored focus outline in page color&lt;/li&gt;
-  &lt;li&gt;Tabindex for tab navigation&lt;/li&gt;
-  &lt;li&gt;Social media icons easier tappable with finger&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;trivia&quot;&gt;Trivia&lt;/h2&gt;
-
-&lt;p&gt;Not strictly part of the release, but the images have been blurred to increase text readability and
-help with loading speed as well (burred images get compressed by JPG much better).&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/qwtel/hydejack/releases&quot;&gt;Get &lt;em&gt;The Fast One&lt;/em&gt; on GitHub&lt;/a&gt;&lt;/p&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">This major release increases page load speed dramatically. The page now scores roughly 90/100 on Google’s PageSpeed Insights (up from ~50) and has a high score on similar tools.</summary></entry><entry><title type="html">Social Media Impocalypse (v4)</title><link href="https://vaer-k.net/blog/hydejack/2016-08-30-social-media-impocalypse/" rel="alternate" type="text/html" title="Social Media Impocalypse (v4)" /><published>2016-08-30T00:00:00-07:00</published><updated>2016-08-30T00:00:00-07:00</updated><id>https://vaer-k.net/blog/hydejack/social-media-impocalypse</id><content type="html" xml:base="https://vaer-k.net/blog/hydejack/2016-08-30-social-media-impocalypse/">&lt;p&gt;Hydejack v4 adds &lt;em&gt;a lot&lt;/em&gt; of social media icons and introduces a new default layout.
-It also breaks things, hence a new major release number.&lt;/p&gt;
-
-&lt;h2 id=&quot;breaking&quot;&gt;Breaking&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Structure of &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; has changed
-    &lt;ul&gt;
-      &lt;li&gt;Social media usernames are now located under &lt;code class=&quot;highlighter-rouge&quot;&gt;author: social: &amp;lt;platform&amp;gt;: &amp;lt;username&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;disqus&lt;/code&gt; is now a top-level entry (moved from &lt;code class=&quot;highlighter-rouge&quot;&gt;author&lt;/code&gt;).&lt;/li&gt;
-      &lt;li&gt;Now has &lt;code class=&quot;highlighter-rouge&quot;&gt;font&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;font_accent&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;google_fonts&lt;/code&gt; fields that are mandatory.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Now defaults to the &lt;code class=&quot;highlighter-rouge&quot;&gt;blog&lt;/code&gt; layout, old style is available via &lt;code class=&quot;highlighter-rouge&quot;&gt;blog-by-tag&lt;/code&gt; layout, see &lt;code class=&quot;highlighter-rouge&quot;&gt;archive.html&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--more--&gt;
-
-&lt;p class=&quot;message&quot;&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: This post is outdated and only included for legacy reasons.
-See the &lt;a href=&quot;/docs/8.0.0-beta.8/&quot; class=&quot;heading flip-title&quot;&gt;Documentation&lt;/a&gt; for up-to-date instructions.&lt;/p&gt;
-
-&lt;h2 id=&quot;new-features&quot;&gt;New features&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Added &lt;em&gt;a lot&lt;/em&gt; of social media icons, configurable via &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;New &lt;code class=&quot;highlighter-rouge&quot;&gt;blog&lt;/code&gt; layout. Classic, paginated.&lt;/li&gt;
-  &lt;li&gt;Fonts are configurable via &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;design&quot;&gt;Design&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Link underlines are now fixed-sized for all font sizes (no thicker lines for headlines, etc)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;fixes&quot;&gt;Fixes&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Correctly set the meta description field using either the &lt;code class=&quot;highlighter-rouge&quot;&gt;description&lt;/code&gt; field or &lt;code class=&quot;highlighter-rouge&quot;&gt;post.excerpt&lt;/code&gt; as a fallback (used
-to contain the unmodified markdown).&lt;/li&gt;
-  &lt;li&gt;Fixed various URL bugs relating to &lt;code class=&quot;highlighter-rouge&quot;&gt;site.baseurl&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;internal&quot;&gt;Internal&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Refactoring, preventing code duplications, heavier usage of &lt;code class=&quot;highlighter-rouge&quot;&gt;includes&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/qwtel/hydejack/releases&quot;&gt;Get &lt;em&gt;Social Media Impocalypse&lt;/em&gt; on GitHub&lt;/a&gt;&lt;/p&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">Hydejack v4 adds a lot of social media icons and introduces a new default layout. It also breaks things, hence a new major release number. Breaking Structure of _config.yml has changed Social media usernames are now located under author: social: &amp;lt;platform&amp;gt;: &amp;lt;username&amp;gt;. disqus is now a top-level entry (moved from author). Now has font, font_accent and google_fonts fields that are mandatory. Now defaults to the blog layout, old style is available via blog-by-tag layout, see archive.html.</summary></entry><entry><title type="html">Introducing Hydejack (v3)</title><link href="https://vaer-k.net/blog/hydejack/2016-03-08-introducing-hydejack/" rel="alternate" type="text/html" title="Introducing Hydejack (v3)" /><published>2016-03-08T00:00:00-08:00</published><updated>2016-03-08T00:00:00-08:00</updated><id>https://vaer-k.net/blog/hydejack/introducing-hydejack</id><content type="html" xml:base="https://vaer-k.net/blog/hydejack/2016-03-08-introducing-hydejack/">&lt;p&gt;Unlike Hyde, Hydejack is very opinionated about how you are going to use it.&lt;/p&gt;
-
-&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
-&lt;p&gt;Features include:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Touch-enabled sidebar / drawer for mobile, including fallback when JS is disabled.&lt;/li&gt;
-  &lt;li&gt;Github Pages compatible tag support based on &lt;a href=&quot;http://www.minddust.com/post/tags-and-categories-on-github-pages/&quot;&gt;this post&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;Customizable link color and sidebar image, per-site, per-tag and per-post.&lt;/li&gt;
-  &lt;li&gt;Optional author section at the bottom of each post.&lt;/li&gt;
-  &lt;li&gt;Optional comment section powered by Disqus.&lt;/li&gt;
-  &lt;li&gt;Layout for posts grouped by year&lt;/li&gt;
-  &lt;li&gt;Wide array of social media icons on sidebar.&lt;/li&gt;
-  &lt;li&gt;Math blocks via &lt;a href=&quot;https://khan.github.io/KaTeX/&quot;&gt;KaTeX&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--more--&gt;
-
-&lt;p class=&quot;message&quot;&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: This post is outdated and only included for legacy reasons.
-See the &lt;a href=&quot;/docs/8.0.0-beta.8/&quot; class=&quot;heading flip-title&quot;&gt;Documentation&lt;/a&gt; for up-to-date instructions.&lt;/p&gt;
-
-&lt;h2 id=&quot;download&quot;&gt;Download&lt;/h2&gt;
-&lt;p&gt;Hydejack is developed on and hosted with GitHub. Head to the &lt;a href=&quot;https://github.com/qwtel/hydejack&quot;&gt;GitHub repository&lt;/a&gt;
-for downloads, bug reports, and feature requests.&lt;/p&gt;
-
-&lt;h2 id=&quot;sidebar&quot;&gt;Sidebar&lt;/h2&gt;
-&lt;p&gt;I love the original Hyde theme, but unfortunately the layout isn’t as great on small screens.
-Since the sidebar moves to the top, the user has to scroll down just to read the title of a blog post.&lt;/p&gt;
-
-&lt;p&gt;By using a drawer component I was able to retain the original two column layout.
-It’s possible to move the drawer via touch input (with the help of a little JavaScript).&lt;/p&gt;
-
-&lt;p&gt;Since the background image contributes to the feel of the page I’m letting it peek over the edge a bit.
-This also provides a hint to the user that an interaction is possible.&lt;/p&gt;
-
-&lt;h2 id=&quot;manual&quot;&gt;Manual&lt;/h2&gt;
-
-&lt;h3 id=&quot;configuration&quot;&gt;Configuration&lt;/h3&gt;
-&lt;p&gt;You can configure important aspects of the theme via
-&lt;a href=&quot;https://github.com/qwtel/hydejack/blob/v3/_config.yml&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;&lt;/a&gt;.
-This includes:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;the blog description in the sidebar&lt;/li&gt;
-  &lt;li&gt;the (optional) author description and photo&lt;/li&gt;
-  &lt;li&gt;default image and link color of the blog&lt;/li&gt;
-  &lt;li&gt;the github and twitter usernames&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;how-to-change-the-image-and-color-of-a-post&quot;&gt;How to Change the Image and Color of a Post&lt;/h3&gt;
-&lt;p&gt;In the manifest of a blog post, simply add an url as &lt;code class=&quot;highlighter-rouge&quot;&gt;image&lt;/code&gt; and a CSS color as &lt;code class=&quot;highlighter-rouge&quot;&gt;color&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;post&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Introducing Hydejack&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/assets/img/hyde.jpg&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;#949667'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;how-to-add-a-new-tag&quot;&gt;How to Add a New Tag&lt;/h3&gt;
-&lt;p&gt;Tags are not meant to be used #instagram #style: #food #goodfood #happy #happylife #didimentionfood #yougetthepoint,
-as each tag requires some setup work. I tend to think of it as categories that can be combined.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Add an entry to &lt;code class=&quot;highlighter-rouge&quot;&gt;_data/tags.yml&lt;/code&gt;, where the key represents a slug and provide at least a &lt;code class=&quot;highlighter-rouge&quot;&gt;name&lt;/code&gt; value and
-optionally &lt;code class=&quot;highlighter-rouge&quot;&gt;image&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;color&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;description&lt;/code&gt;.&lt;/p&gt;
-
-    &lt;p&gt;Example &lt;code class=&quot;highlighter-rouge&quot;&gt;/_data/tags.yml&lt;/code&gt;:&lt;/p&gt;
-
-    &lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;mytag&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;My Tag&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Make a new file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;tag&lt;/code&gt; folder, using the same name you’ve used as the key / slug and
-change the &lt;code class=&quot;highlighter-rouge&quot;&gt;tag&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;permalink&lt;/code&gt; entries.&lt;/p&gt;
-
-    &lt;p&gt;Example &lt;code class=&quot;highlighter-rouge&quot;&gt;/tag/mytag.md&lt;/code&gt;:&lt;/p&gt;
-
-    &lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;blog-by-tag&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mytag&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;permalink&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/tag/mytag/&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Tag your blog posts using the &lt;code class=&quot;highlighter-rouge&quot;&gt;tags&lt;/code&gt; key (color and image will only depend on the first tag).&lt;/p&gt;
-
-    &lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;post&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Introducing My New Tag&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;mytag&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;othertag&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;(optional) Add the tag to the sidebar, by adding it to &lt;code class=&quot;highlighter-rouge&quot;&gt;sidebar_tags&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;.
-They will appear in the listed order.&lt;/p&gt;
-
-    &lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;sidebar_tags&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;mytag&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;othertag&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">Unlike Hyde, Hydejack is very opinionated about how you are going to use it. Features Features include: Touch-enabled sidebar / drawer for mobile, including fallback when JS is disabled. Github Pages compatible tag support based on this post. Customizable link color and sidebar image, per-site, per-tag and per-post. Optional author section at the bottom of each post. Optional comment section powered by Disqus. Layout for posts grouped by year Wide array of social media icons on sidebar. Math blocks via KaTeX.</summary></entry></feed>
+&lt;p&gt;Basically, my point is to assuage any fears a student like me might have about going the online-only route. I should mention that I do have the comfort of owning a Linux-powered desktop to fall back on for my more hardware intensive needs, but between the cost of my Chromebook 11 and my self-built desktop, and hell let’s throw in my Samsung Galaxy S3 smartphone too―I’ve still spent less than the cost of a MacBook Pro. You don’t have to shell out a ton of money for the technological conveniences Mr. Moneybags enjoys. I’ve easily saved myself $300-$400 at the very least just on a laptop alone and I feel like I’m not missing out on a thing. It works for me, maybe it will work for you.&lt;/p&gt;</content><author><name>Vincent Raerek</name><email>vincent@vaer-k.net</email></author><summary type="html">it's cheap</summary></entry></feed>
